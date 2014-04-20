@@ -1,6 +1,8 @@
 #!/usr/bin/python
 __author__ = 'warreee'
 
+import Cirkel
+
 def main():
     readInput()
 
@@ -24,8 +26,7 @@ def readInput():
                 aantalCirkels = line
             else:
                 #maakt een nieuwe cirkel aan in de lijst
-                print("else")
-
-
+                str = line.split(' ')
+                cirkel = Cirkel.Cirkel(str[0],str[1],str[2])
 
 if __name__ == "__main__": main()
