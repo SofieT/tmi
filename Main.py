@@ -26,7 +26,10 @@ def readInput():
                 aantalCirkels = line
             else:
                 #maakt een nieuwe cirkel aan in de lijst
-                str = line.split(' ')
-                cirkel = Cirkel.Cirkel(str[0],str[1],str[2])
+                str = line.strip().split(' ')
+                xco = int(str[0])
+                yco = int(str[1])
+                r = int(str[2])
+                cirkel = Cirkel.Cirkel(xco, yco, r)
 
 if __name__ == "__main__": main()
