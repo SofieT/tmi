@@ -1,9 +1,15 @@
 __author__ = 'warreee'
 
 def main():
-    askInput()
+    readInput()
+
+#Deze methode leest het input bestand en verwacht de naam: cirkles.txt
+
+def readInput():
+    try:
+        file = open('cirkels.txt')
+    except:
+        print("Het invoerbestand cirkels.txt werd niet gevonden!")
 
 
-def askInput():
-    nrCircles = input("Geef het aantal circles op: ")
 if __name__ == "__main__": main()
