@@ -1,8 +1,8 @@
 #!/usr/bin/python
 __author__ = 'warreee'
 
-import Cirkel
-
+from Cirkel import Cirkel
+from BST import searchtree
 def main():
     readInput()
 
@@ -19,17 +19,21 @@ def readInput():
     else:
         algo = 0
         aantalCirkels = 0
+        lijst = searchtree()
         for line in file:
             if algo == 0:
-                algo = line
+                algo = int(line)
             elif aantalCirkels == 0:
-                aantalCirkels = line
+                aantalCirkels = int(line)
             else:
-                #maakt een nieuwe cirkel aan in de lijst
-                str = line.strip().split(' ')
-                xco = int(str[0])
-                yco = int(str[1])
-                r = int(str[2])
-                cirkel = Cirkel.Cirkel(xco, yco, r)
-
+                #Gebruik het eerste algoritme
+                if algo == 1:
+                    print("test")
+                else:
+                    #Algoritme 2 of 3
+                    str = line.strip().split(' ')
+                    xco = int(str[0])
+                    yco = int(str[1])
+                    r = int(str[2])
+                    lijst.insert(Cirkel(xco, yco, r))
 if __name__ == "__main__": main()

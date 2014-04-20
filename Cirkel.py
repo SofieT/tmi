@@ -1,5 +1,7 @@
 __author__ = 'warreee'
 
+from Punt import Punt
+
 class Cirkel():
     def __init__(self, xco = 0, yco = 0, r = 0):
         self.xco = xco
@@ -8,15 +10,21 @@ class Cirkel():
         self.twee()
         self.vier()
 
-    #Deze methode berekent de 2 hoekpunten van de lijnstukken voor in algoritme 2
+    def getXco(self):
+        return self.xco
 
+    def getYco(self):
+        return self.yco
+
+    #Deze methode berekent de 2 hoekpunten van de lijnstukken voor in algoritme 2
     def twee(self):
-        self.linksxco = self.xco - self.r
-         #Enkel de x-coördinaten veranderen.
-        self.linksyco = self.yco
-        self.rechtsxco = self.xco + self.r
-         #Enkel de x-coördinaten veranderen.
-        self.rechtsyco = self.yco
+        linksxco = self.xco - self.r
+        linksyco = self.yco
+        self.linksPunt = Punt(linksxco, linksyco, 0)
+
+        rechtsxco = self.xco + self.r
+        rechtsyco = self.yco
+        self.rechtsPunt = Punt(rechtsxco, rechtsyco, 1)
 
     #Deze methode berekent de 4 hoekpunten van de 2 lijnstukken voor in algoritme 3
     #De vier hoekpunten worden als volgt genoemd:
@@ -24,17 +32,22 @@ class Cirkel():
     def vier(self):
 
          # lb = linksboven
-        self.lbxco = self.linksxco
-        self.lbyco = self.yco + self.r
+        lbxco = self.linksxco
+        lbyco = self.yco + self.r
+        self.lbPunt = Punt(lbxco, lbyco, 0, self.loPunt)
 
         # lo = linksonder
-        self.loxco = self.linksxco
-        self.loyco = self.yco - self.r
+        loxco = self.linksxco
+        loyco = self.yco - self.r
+        self.loPunt = Punt(loxco, loyco, 0, self.lbPunt)
 
         # rb = rechtsboven
-        self.rbxco = self.rechtsxco
-        self.rbyco = self.yco + self.r
+        rbxco = self.rechtsxco
+        rbyco = self.yco + self.r
+        self.rbPunt = Punt(rbxco, rbyco, 1, self.roPunt)
 
         # ro = rechtsonder
-        self.roxco = self.rechtsxco
-        self.royco = self.yco + self.r
+        roxco = self.rechtsxco
+        royco = self.yco + self.r
+        self.roPunt = Punt(roxco, royco, 1, self.rbPunt)
+

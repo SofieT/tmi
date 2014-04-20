@@ -1,18 +1,8 @@
+__author__ = 'warreee'
 '''
-   by Adrian Statescu <adrian@thinkphp.ro>
-   Twitter: @thinkphp
-   G+     : http://gplus.to/thinkphp
-   MIT Style License
-
+   Modified algorithm of Adrian Statescu
    Binary Search Tree
    ------------------
-
-   Trees can come in many different shapes, and they can vary in the number of children allowed per node or in the way
-   they organize data values within the nodes. One of the most commonly used trees in computer science is the binary tree.
-   A binary tree is a tree in which each node can have at most two children. On child is identified as the left child and
-   the other as the right child. The topmost node of the tree is known as the root node.It provides the single acccess point
-   into the structure. The root node is the only node in the tree that does not have an incoming edge (an edge directed towart it)
-   By definition every non=empty tree must have contain a root node.
 
 '''
 
@@ -29,7 +19,7 @@ class Node:
 
           return str(self.info) #return as string
 
-
+# TODO dubbels mogen niet verwijderd worden!
 class searchtree:
 
       def __init__(self): #constructor of class
@@ -68,6 +58,7 @@ class searchtree:
                  else:
                     break
 
+
       def bft(self): #Breadth-First Traversal
 
           self.root.level = 0
@@ -97,7 +88,7 @@ class searchtree:
                 queue.append(current_node.right)
 
 
-          print "".join(out)
+          print("".join(out))
 
 
       def inorder(self,node):
@@ -105,7 +96,7 @@ class searchtree:
            if node is not None:
 
               self.inorder(node.left)
-              print node.info
+              print(node.info)
               self.inorder(node.right)
 
 
@@ -113,7 +104,7 @@ class searchtree:
 
            if node is not None:
 
-              print node.info
+              print(node.info)
               self.preorder(node.left)
               self.preorder(node.right)
 
@@ -124,18 +115,19 @@ class searchtree:
 
               self.postorder(node.left)
               self.postorder(node.right)
-              print node.info
+              print(node.info)
 
-
+'''
 tree = searchtree()
-arr = [8,3,1,6,4,7,10,14,13]
+arr = [8,3,1,6,4,10,10,14,13]
 for i in arr:
     tree.insert(i)
-print 'Breadth-First Traversal'
+print('Breadth-First Traversal')
 tree.bft()
-print 'Inorder Traversal'
+print('Inorder Traversal')
 tree.inorder(tree.root)
-print 'Preorder Traversal'
+print('Preorder Traversal')
 tree.preorder(tree.root)
-print 'Postorder Traversal'
+print('Postorder Traversal')
 tree.postorder(tree.root)
+'''
