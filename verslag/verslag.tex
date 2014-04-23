@@ -18,6 +18,9 @@
 %Kan er voor zorgen dat een figuur op de exacte plaats staat:
 \usepackage{float}
 
+%Package voor algoritmen:
+\usepackage{algpseudocode}
+\usepackage{algorithm}
 \begin{document}
 \begin{titlepage}
 \title{\Huge Toepassingen van meetkunde in de informatica}
@@ -36,6 +39,18 @@
 \end{center}
 \end{titlepage}
 
+\section{Hoogniveau beschrijving van de algoritmen}
 
-
+\begin{algorithm}
+\caption{eenvoudig algoritme met rekencomplexiteit $O(N^2)$}
+\begin{algorithmic}
+\If {$i\geq maxval$}
+    \State $i\gets 0$
+\Else
+    \If {$i+k\leq maxval$}
+        \State $i\gets i+k$
+    \EndIf
+\EndIf
+\end{algorithmic}
+\end{algorithm}
 \end{document}

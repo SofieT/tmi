@@ -16,5 +16,8 @@ class Punt():
     # Methode om twee punten te vergelijken
     # @return true a.s.a. het punt waarop de methode wordt uitgevoerd links ligt van het meegegeven punt
     def leftOf(self, point):
+        """
+        jkhgfl
+        """
         if self.xco < point.getXco():
             return 1
