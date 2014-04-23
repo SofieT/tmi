@@ -1,7 +1,7 @@
 __author__ = 'warreee'
 
 class Punt():
-    def __init__(self, xco, yco, hand, partner):
+    def __init__(self, xco, yco, hand, partner=None):
         self.xco = xco
         self.yco = yco
         self.hand = hand
@@ -21,3 +21,6 @@ class Punt():
         """
         if self.xco < point.getXco():
             return 1
+
+    def set_partner(self, partner):
+        self.partner = partner

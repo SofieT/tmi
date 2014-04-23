@@ -6,118 +6,110 @@ __author__ = 'warreee'
 
 '''
 
+
 class Node:
+    def __init__(self, info):  #constructor of class
 
-      def __init__(self,info): #constructor of class
+        self.info = info  #information for node
+        self.left = None  #left leef
+        self.right = None  #right leef
+        self.level = None  #level none defined
 
-          self.info = info  #information for node
-          self.left = None  #left leef
-          self.right = None #right leef
-          self.level = None #level none defined
-
-      def __str__(self):
-
-          return str(self.info) #return as string
-
-# TODO dubbels mogen niet verwijderd worden!
-class searchtree:
-
-      def __init__(self): #constructor of class
-
-          self.root = None
+    def __str__(self):
+        return str(self.info)  #return as string
 
 
-      def insert(self,val):  #create binary search tree nodes
+class Searchtree:
+    def __init__(self):  #constructor of class
 
-          if self.root == None:
+        self.root = None
 
-             self.root = Node(val)
 
-          else:
+    def insert(self, val):  #create binary search tree nodes
 
-             current = self.root
+        if self.root is None:
 
-             while 1:
+            self.root = Node(val)
 
-                 if val < current.info:
+        else:
 
-                   if current.left:
-                      current = current.left
-                   else:
-                      current.left = Node(val)
-                      break;
+            current = self.root
 
-                 elif val > current.info:
+            while 1:
+
+                if val < current.info:
+
+                    if current.left:
+                        current = current.left
+                    else:
+                        current.left = Node(val)
+                        break;
+
+                elif val > current.info:
 
                     if current.right:
-                       current = current.right
+                        current = current.right
                     else:
-                       current.right = Node(val)
-                       break;
+                        current.right = Node(val)
+                        break;
 
-                 else:
+                else:
                     break
 
 
-      def bft(self): #Breadth-First Traversal
+    def bft(self):  # Breadth-First Traversal
 
-          self.root.level = 0
-          queue = [self.root]
-          out = []
-          current_level = self.root.level
+        self.root.level = 0
+        queue = [self.root]
+        out = []
+        current_level = self.root.level
 
-          while len(queue) > 0:
+        while len(queue) > 0:
 
-             current_node = queue.pop(0)
+            current_node = queue.pop(0)
 
-             if current_node.level > current_level:
+            if current_node.level > current_level:
                 current_level += 1
                 out.append("\n")
 
-             out.append(str(current_node.info) + " ")
+            out.append(str(current_node.info) + " ")
 
-             if current_node.left:
-
+            if current_node.left:
                 current_node.left.level = current_level + 1
                 queue.append(current_node.left)
 
-
-             if current_node.right:
-
+            if current_node.right:
                 current_node.right.level = current_level + 1
                 queue.append(current_node.right)
 
-
-          print("".join(out))
-
-
-      def inorder(self,node):
-
-           if node is not None:
-
-              self.inorder(node.left)
-              print(node.info)
-              self.inorder(node.right)
+        print("".join(out))
 
 
-      def preorder(self,node):
+    def inorder(self, node):
 
-           if node is not None:
+        if node is not None:
+            self.inorder(node.left)
+            print(node.info)
+            self.inorder(node.right)
 
-              print(node.info)
-              self.preorder(node.left)
-              self.preorder(node.right)
+
+    def preorder(self, node):
+
+        if node is not None:
+            print(node.info)
+            self.preorder(node.left)
+            self.preorder(node.right)
 
 
-      def postorder(self,node):
+    def postorder(self, node):
 
-           if node is not None:
+        if node is not None:
+            self.postorder(node.left)
+            self.postorder(node.right)
+            print(node.info)
 
-              self.postorder(node.left)
-              self.postorder(node.right)
-              print(node.info)
 
-'''
+"""
 tree = searchtree()
 arr = [8,3,1,6,4,10,10,14,13]
 for i in arr:
@@ -130,4 +122,4 @@ print('Preorder Traversal')
 tree.preorder(tree.root)
 print('Postorder Traversal')
 tree.postorder(tree.root)
-'''
+"""

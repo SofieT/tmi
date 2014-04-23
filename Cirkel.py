@@ -1,14 +1,21 @@
+import math
+
 __author__ = 'warreee'
 
 from Punt import Punt
 
+
 class Cirkel():
-    def __init__(self, xco = 0, yco = 0, r = 0):
+
+    def __init__(self, xco = 0, yco = 0, r = 0, points = 0):
         self.xco = xco
         self.yco = yco
         self.r = r
-        self.twee()
-        self.vier()
+        if points == 2:
+            self.twee()
+        elif points == 4:
+            self.vier()
+
 
     def getXco(self):
         return self.xco
@@ -16,8 +23,13 @@ class Cirkel():
     def getYco(self):
         return self.yco
 
-    #Deze methode berekent de 2 hoekpunten van de lijnstukken voor in algoritme 2
+    def getR(self):
+        return self.r
+
     def twee(self):
+        """
+        Deze methode berekent de 2 hoekpunten van de lijnstukken voor in algoritme 2
+        """
         linksxco = self.xco - self.r
         linksyco = self.yco
         self.linksPunt = Punt(linksxco, linksyco, 0)
@@ -26,11 +38,11 @@ class Cirkel():
         rechtsyco = self.yco
         self.rechtsPunt = Punt(rechtsxco, rechtsyco, 1)
 
-    #Deze methode berekent de 4 hoekpunten van de 2 lijnstukken voor in algoritme 3
-    #De vier hoekpunten worden als volgt genoemd:
-
     def vier(self):
-
+        """
+        Deze methode berekent de 4 hoekpunten van de 2 lijnstukken voor in algoritme 3
+        De vier hoekpunten worden als volgt genoemd:
+        """
          # lb = linksboven
         lbxco = self.linksxco
         lbyco = self.yco + self.r
@@ -50,4 +62,39 @@ class Cirkel():
         roxco = self.rechtsxco
         royco = self.yco + self.r
         self.roPunt = Punt(roxco, royco, 1, self.rbPunt)
+
+    def check_overlap(self, other_cirkel):
+        """
+        Checkt of deze cirkel overlapt met de andere cirkel
+        """
+
+        e = self.getXco() - other_cirkel.getXco()
+        f = self.getYco() - other_cirkel.getYco()
+        p = math.sqrt(e**2 + f**2)
+
+        if self.getR() + other_cirkel.getR() <= p:
+            # Bereken snijpunten
+            return True
+        else:
+            return False
+
+    def calculate_intersections(self, other_cirkel):
+        d = (self.getR() + other_cirkel.getR())
+        a = (self.getR()**2 - other_cirkel.getR() **2 + (d**2)) / (2 * d)
+        h = math.sqrt( abs(self.getR()**2 - a**2))
+        px = self.getXco() + (a * (other_cirkel.getXco() - self.getXco())) / d
+        py = self.getYco() + (a * (other_cirkel.getYco() - self.getYco())) / d
+
+        x1 = px + h * (other_cirkel.getYco() - self.getYco()) / d
+        y1 = py - h * (other_cirkel.getXco() - self.getXco()) / d
+        x2 = px - h * (other_cirkel.getYco() - self.getYco()) / d
+        y2 = py + h * (other_cirkel.getXco() - self.getXco()) / d
+
+        if x1 == x2 and y1 == y2:
+            return (x1,y1),
+        return (x1,y1),(x2,y2)
+
+
+    def get_last_intersection(self):
+        return self.last_x, self.last_y
 
