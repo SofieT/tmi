@@ -44,13 +44,17 @@
 \begin{algorithm}
 \caption{eenvoudig algoritme met rekencomplexiteit $O(N^2)$}
 \begin{algorithmic}
-\If {$i\geq maxval$}
-    \State $i\gets 0$
-\Else
-    \If {$i+k\leq maxval$}
-        \State $i\gets i+k$
-    \EndIf
-\EndIf
+\State Lijst L met alle cirkels
+
+\While {Niet leeg L}
+	\State Cirkel = L.NeemEnVerwijder
+	\For {c in L}
+	\State snijptn = Cirkel.BerekenSnijpunten(c)
+	\State output.VoegToe(snijptn)
+	\EndFor
+\EndWhile
+
+\Return output
 \end{algorithmic}
 \end{algorithm}
 \end{document}
