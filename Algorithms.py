@@ -1,7 +1,7 @@
 __author__ = 'robin'
 
 
-class algo1(object):
+class Algo1(object):
 
     cirkel_list = list()
     intersection_list = list()
@@ -30,3 +30,10 @@ class algo1(object):
         Geef de lijst met snijpunten terug.
         """
         return self.intersection_list
+
+class Algo2(object):
+    pass
+
+
+class Algo3(object):
+    pass

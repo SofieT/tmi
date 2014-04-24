@@ -3,14 +3,14 @@ __author__ = 'warreee'
 
 from Cirkel import Cirkel
 #from BST import searchtree
-from algo1 import algo1
+from Algorithms import Algo1
 from time import time
 
 def main():
     algo, aantal_cirkels, lijst = readInput()
 
     if algo == 1:
-        algorithm = algo1(lijst)
+        algorithm = Algo1(lijst)
     elif algo == 2:
         pass
     elif algo == 3:
