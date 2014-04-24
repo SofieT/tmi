@@ -4,6 +4,7 @@ __author__ = 'warreee'
 from Cirkel import Cirkel
 #from BST import searchtree
 from algo1 import algo1
+from time import time
 
 def main():
     algo, aantal_cirkels, lijst = readInput()
@@ -17,8 +18,10 @@ def main():
     else:
         print("Onbekend algoritme.")
 
+    start = time()
     algorithm.execute()
-    save_output(algorithm.get_intersections(), 10000, True)
+    end = time()
+    save_output(algorithm.get_intersections(), int((end - start) * 1000), True)
 
 #Deze methode leest het input bestand en verwacht de naam: cirkles.txt
 

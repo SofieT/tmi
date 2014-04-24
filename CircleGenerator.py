@@ -24,7 +24,7 @@ def write_to_file(cirkels):
             f.write(str(c.getYco()) + " ")
             f.write(str(c.getR()) + "\n")
 
-c = generate_cirkels(10)
+c = generate_cirkels(1000)
 write_to_file(c)
 
 
