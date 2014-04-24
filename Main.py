@@ -1,10 +1,11 @@
 #!/usr/bin/python
-__author__ = 'warreee'
+__author__ = 'Ward Schodts en Robin Goots'
 
 from Cirkel import Cirkel
 #from BST import searchtree
 from Algorithms import Algo1
 from time import time
+
 
 def main():
     algo, aantal_cirkels, lijst = readInput()

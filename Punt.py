@@ -1,6 +1,8 @@
-__author__ = 'warreee'
+__author__ = 'Ward Schodts en Robin Goots'
+
 
 class Punt():
+
     def __init__(self, xco, yco, hand, partner=None):
         self.xco = xco
         self.yco = yco

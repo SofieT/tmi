@@ -1,4 +1,4 @@
-__author__ = 'robin'
+__author__ = 'Ward Schodts en Robin Goots'
 
 
 class Algo1(object):

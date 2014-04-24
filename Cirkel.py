@@ -1,8 +1,7 @@
-import math
-
-__author__ = 'warreee'
+__author__ = 'Ward Schodts en Robin Goots'
 
 from Punt import Punt
+from math import sqrt
 
 
 class Cirkel():
@@ -70,7 +69,7 @@ class Cirkel():
 
         e = self.getXco() - other_cirkel.getXco()
         f = self.getYco() - other_cirkel.getYco()
-        p = math.sqrt(e**2 + f**2)
+        p = sqrt(e**2 + f**2)
 
         if self.getR() + other_cirkel.getR() <= p:
             # Bereken snijpunten
@@ -81,7 +80,7 @@ class Cirkel():
     def calculate_intersections(self, other_cirkel):
         d = (self.getR() + other_cirkel.getR())
         a = (self.getR()**2 - other_cirkel.getR() **2 + (d**2)) / (2 * d)
-        h = math.sqrt( abs(self.getR()**2 - a**2))
+        h = sqrt( abs(self.getR()**2 - a**2))
         px = self.getXco() + (a * (other_cirkel.getXco() - self.getXco())) / d
         py = self.getYco() + (a * (other_cirkel.getYco() - self.getYco())) / d
 
@@ -91,8 +90,8 @@ class Cirkel():
         y2 = py + h * (other_cirkel.getXco() - self.getXco()) / d
 
         if x1 == x2 and y1 == y2:
-            return (x1,y1),
-        return (x1,y1),(x2,y2)
+            return (x1, y1),
+        return (x1, y1),(x2, y2)
 
 
     def get_last_intersection(self):
