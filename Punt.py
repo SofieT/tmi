@@ -30,6 +30,10 @@ class Punt():
             return 0
         if self.yco > point.getYco():
             return 1
+        if self.hand < point.hand:
+            return 0
+        if self.hand > point.hand:
+            return 1
         return 4
 
     def set_partner(self, partner):

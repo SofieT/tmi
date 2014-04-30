@@ -79,8 +79,9 @@ class Cirkel():
 
     def calculate_intersections(self, other_cirkel):
         d = sqrt( (self.xco - other_cirkel.xco)**2 + (self.yco - other_cirkel.yco)**2 )
-        a = (self.r**2 - other_cirkel.r**2 + d**2) / (2 * d)
-        h = sqrt(self.r**2 - a**2)
+
+        a = abs((self.r**2 - other_cirkel.r**2 + d**2) / (2 * d))
+        h = sqrt(abs(self.r**2 - a**2))
         px = self.getXco() + (a * (other_cirkel.getXco() - self.getXco())) / d
         py = self.getYco() + (a * (other_cirkel.getYco() - self.getYco())) / d
 

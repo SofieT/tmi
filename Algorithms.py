@@ -51,8 +51,6 @@ class Algo2(object):
 
             if temp.hand == 0:
 
-
-
                 for c in circle:
                     if temp.circle.check_overlap(c):
                         intersections = temp.circle.calculate_intersections(c)
