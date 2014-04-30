@@ -2,6 +2,7 @@ __author__ = 'robin'
 
 from BST import Searchtree
 from Punt import Punt
+from Algorithms import Algo2
 
 punt1 = Punt(1,1,None)
 punt2 = Punt(2,1,None)
@@ -27,3 +28,4 @@ print(bst.pop())
 print(bst.pop())
 print(bst.pop())
 print(bst.pop())
+
