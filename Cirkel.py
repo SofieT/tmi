@@ -78,16 +78,17 @@ class Cirkel():
             return True
 
     def calculate_intersections(self, other_cirkel):
-        d = (self.getR() + other_cirkel.getR())
-        a = (self.getR()**2 - other_cirkel.getR() **2 + (d**2)) / (2 * d)
-        h = sqrt( abs(self.getR()**2 - a**2))
+        d = sqrt( (self.xco - other_cirkel.xco)**2 + (self.yco - other_cirkel.yco)**2 )
+        a = (self.r**2 - other_cirkel.r**2 + d**2) / (2 * d)
+        h = sqrt(self.r**2 - a**2)
         px = self.getXco() + (a * (other_cirkel.getXco() - self.getXco())) / d
         py = self.getYco() + (a * (other_cirkel.getYco() - self.getYco())) / d
 
-        x1 = px + h * (other_cirkel.getYco() - self.getYco()) / d
-        y1 = py - h * (other_cirkel.getXco() - self.getXco()) / d
-        x2 = px - h * (other_cirkel.getYco() - self.getYco()) / d
-        y2 = py + h * (other_cirkel.getXco() - self.getXco()) / d
+        x1 = px + ( h * (other_cirkel.getYco() - self.getYco()) ) / d
+        y1 = py - ( h * (other_cirkel.getXco() - self.getXco()) )  / d
+
+        x2 = px - ( h * (other_cirkel.getYco() - self.getYco()) ) / d
+        y2 = py + ( h * (other_cirkel.getXco() - self.getXco()) ) / d
 
         if x1 == x2 and y1 == y2:
             return (x1, y1),
