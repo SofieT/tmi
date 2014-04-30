@@ -71,11 +71,11 @@ class Cirkel():
         f = self.getYco() - other_cirkel.getYco()
         p = sqrt(e**2 + f**2)
 
-        if self.getR() + other_cirkel.getR() <= p:
+        if self.getR() + other_cirkel.getR() < p:
             # Bereken snijpunten
-            return True
-        else:
             return False
+        else:
+            return True
 
     def calculate_intersections(self, other_cirkel):
         d = (self.getR() + other_cirkel.getR())
