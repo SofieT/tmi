@@ -31,11 +31,11 @@ class Cirkel():
         """
         linksxco = self.xco - self.r
         linksyco = self.yco
-        self.linksPunt = Punt(linksxco, linksyco, 0)
+        self.linksPunt = Punt(linksxco, linksyco, 0, self)
 
         rechtsxco = self.xco + self.r
         rechtsyco = self.yco
-        self.rechtsPunt = Punt(rechtsxco, rechtsyco, 1)
+        self.rechtsPunt = Punt(rechtsxco, rechtsyco, 1, self)
 
     def vier(self):
         """

@@ -3,7 +3,7 @@ __author__ = 'Ward Schodts en Robin Goots'
 
 from Cirkel import Cirkel
 #from BST import searchtree
-from Algorithms import Algo1
+from Algorithms import Algo1, Algo2
 from time import time
 
 
@@ -13,7 +13,7 @@ def main():
     if algo == 1:
         algorithm = Algo1(lijst)
     elif algo == 2:
-        pass
+        algorithm = Algo2(lijst)
     elif algo == 3:
         pass
     else:

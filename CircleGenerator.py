@@ -15,7 +15,7 @@ def generate_cirkels(amount):
 def write_to_file(cirkels):
 
     with open('cirkels.txt', 'w') as f:
-        f.write("1\n")
+        f.write("2\n")
         f.write(str(len(cirkels)))
         f.write('\n')
 
@@ -24,7 +24,7 @@ def write_to_file(cirkels):
             f.write(str(c.getYco()) + " ")
             f.write(str(c.getR()) + "\n")
 
-c = generate_cirkels(1000)
+c = generate_cirkels(10)
 write_to_file(c)
 
 

@@ -1,3 +1,5 @@
+from BST import Searchtree
+
 __author__ = 'Ward Schodts en Robin Goots'
 
 
@@ -32,7 +34,41 @@ class Algo1(object):
         return self.intersection_list
 
 class Algo2(object):
-    pass
+    intersection_list = list()
+
+    def __init__(self, circle_list):
+        self.circle_list = circle_list
+
+    def execute(self):
+
+        for c in self.circle_list:
+            c.twee()
+
+        self.sort_circle_list()
+        circle = list()
+        while not self.bst.is_empty():
+            temp = self.bst.pop()
+
+            if temp.hand == 0:
+
+                circle.append(temp.circle)
+
+                for c in self.circle_list:
+                    if temp.circle.check_overlap(c):
+                        intersections = temp.circle.calculate_intersections(c)
+                        for t in intersections:
+                            self.intersection_list.append(t)
+            else:
+                circle.remove(temp.circle)
+
+    def get_intersections(self):
+        return self.intersection_list
+
+    def sort_circle_list(self):
+        self.bst = Searchtree()
+        for c in self.circle_list:
+            self.bst.insert(c.linksPunt)
+            self.bst.insert(c.rechtsPunt)
 
 
 class Algo3(object):

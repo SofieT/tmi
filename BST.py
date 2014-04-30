@@ -24,12 +24,13 @@ class Searchtree:
 
         self.root = None
 
-
-    def insert(self, val):  #create binary search tree nodes
-
+    def insert(self, point):  #create binary search tree nodes
+        """
+        Voeg een ount toe aan de BST
+        """
         if self.root is None:
 
-            self.root = Node(val)
+            self.root = Node(point)
 
         else:
 
@@ -37,89 +38,47 @@ class Searchtree:
 
             while 1:
 
-                if val < current.info:
+                status = point.compare(current.info)
+
+                if status == 0:
 
                     if current.left:
                         current = current.left
                     else:
-                        current.left = Node(val)
+                        current.left = Node(point)
                         break;
 
-                elif val > current.info:
+                elif status == 1:
 
                     if current.right:
                         current = current.right
                     else:
-                        current.right = Node(val)
+                        current.right = Node(point)
                         break;
 
+                elif status == 4:
+                    # Punten komen overeen. Dit ondersteunen we niet.
+                    break
                 else:
                     break
 
+    def pop(self):
+        """
+        Haal het dichtsbijzijnde punt uit de BST.
+        """
+        previous = None
+        current = self.root
+        while current is not None:
+            if current.left is not None:
+                previous = current
+                current = current.left
+            else:
+                if previous is None:
+                    self.root = current.right
+                    return current.info
+                else:
+                    previous.left = current.right
+                    return current.info
 
-    def bft(self):  # Breadth-First Traversal
-
-        self.root.level = 0
-        queue = [self.root]
-        out = []
-        current_level = self.root.level
-
-        while len(queue) > 0:
-
-            current_node = queue.pop(0)
-
-            if current_node.level > current_level:
-                current_level += 1
-                out.append("\n")
-
-            out.append(str(current_node.info) + " ")
-
-            if current_node.left:
-                current_node.left.level = current_level + 1
-                queue.append(current_node.left)
-
-            if current_node.right:
-                current_node.right.level = current_level + 1
-                queue.append(current_node.right)
-
-        print("".join(out))
-
-
-    def inorder(self, node):
-
-        if node is not None:
-            self.inorder(node.left)
-            print(node.info)
-            self.inorder(node.right)
-
-
-    def preorder(self, node):
-
-        if node is not None:
-            print(node.info)
-            self.preorder(node.left)
-            self.preorder(node.right)
-
-
-    def postorder(self, node):
-
-        if node is not None:
-            self.postorder(node.left)
-            self.postorder(node.right)
-            print(node.info)
-
-
-"""
-tree = searchtree()
-arr = [8,3,1,6,4,10,10,14,13]
-for i in arr:
-    tree.insert(i)
-print('Breadth-First Traversal')
-tree.bft()
-print('Inorder Traversal')
-tree.inorder(tree.root)
-print('Preorder Traversal')
-tree.preorder(tree.root)
-print('Postorder Traversal')
-tree.postorder(tree.root)
-"""
+    def is_empty(self):
+        return self.root is None
