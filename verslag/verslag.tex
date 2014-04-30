@@ -23,7 +23,9 @@
 \usepackage{algorithm}
 \begin{document}
 \begin{titlepage}
+
 \title{\Huge Toepassingen van meetkunde in de informatica}
+
 \author{Robin Goots\\
 		Ward Schodts\\
 		}
@@ -57,4 +59,27 @@
 \Return output
 \end{algorithmic}
 \end{algorithm}
+Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als links eindpunt het meest linkse punt van de cirkel en als rechst eindpunt het meest rechtse eindpunt van de cirkel.
+\begin{algorithm}
+\caption{doorlooplijnalgoritme met rekencomplexiteit $O(N^2)$}
+\begin{algorithmic}
+\State Lijst L: met alle punten, gesorteerd op het laagste x-co\"ordinaat daarna op het laagste y-co\"ordinaat.
+\State Lijst C: met alle cirkels op een bepaald moment van een eventpoint, ongesorteerd.
+\For {elk punt p in de gesorteerde lijst}
+	\If {p is het linkse eindpunt van een cirkel c}
+	
+		\State snijptn = Cirkel.BerekenSnijpunten(c)
+		\State output.VoegToe(snijptn)
+	
+	\State VoegToe(C,c)
+	\EndIf
+	\If {p is het rechtse eindpunt van een cirkel c}
+	\State Verwijder(C,c)
+	\EndIf
+\EndFor
+
+\Return output
+\end{algorithmic}
+\end{algorithm}
+
 \end{document}
