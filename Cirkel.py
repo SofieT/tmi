@@ -2,18 +2,17 @@ __author__ = 'Ward Schodts en Robin Goots'
 
 from Punt import Punt
 from math import sqrt
+from Segment import Segment
 
 
 class Cirkel():
 
-    def __init__(self, xco = 0, yco = 0, r = 0, points = 0):
+    def __init__(self, xco=0, yco=0, r=0):
         self.xco = xco
         self.yco = yco
         self.r = r
-        if points == 2:
-            self.twee()
-        elif points == 4:
-            self.vier()
+        self.twee()
+        self.segment()
 
 
     def getXco(self):
@@ -62,6 +61,8 @@ class Cirkel():
         royco = self.yco + self.r
         self.roPunt = Punt(roxco, royco, 1, self.rbPunt)
 
+    def segment(self):
+        pass
     def check_overlap(self, other_cirkel):
         """
         Checkt of deze cirkel overlapt met de andere cirkel

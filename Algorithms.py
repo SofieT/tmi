@@ -72,4 +72,19 @@ class Algo2(object):
 
 
 class Algo3(object):
-    pass
+    intersection_list = list()
+
+    def __init__(self, circle_list):
+        self.circle_list = circle_list
+
+    def execute(self):
+        pass
+
+    def get_intersections(self):
+        return self.intersection_list
+
+    def sort_circle_list(self):
+        self.bst = Searchtree()
+        for c in self.circle_list:
+            self.bst.insert(c.linksPunt)
+            self.bst.insert(c.rechtsPunt)

@@ -63,9 +63,9 @@ Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als
 \begin{algorithm}
 \caption{doorlooplijnalgoritme met rekencomplexiteit $O(N^2)$}
 \begin{algorithmic}
-\State Lijst L: met alle punten, gesorteerd op het laagste x-co\"ordinaat daarna op het laagste y-co\"ordinaat.
+\State Lijst L: met alle punten, gesorteerd op het laagste x-co\"ordinaat daarna op het laagste y-co\"ordinaat en daarna komen linkse punten van een segment voor rechtse punten.
 \State Lijst C: met alle cirkels op een bepaald moment van een eventpoint, ongesorteerd.
-\For {elk punt p in de gesorteerde lijst}
+\For {elk punt p in L}
 	\If {p is het linkse eindpunt van een cirkel c}
 	
 		\State snijptn = Cirkel.BerekenSnijpunten(c)
@@ -82,10 +82,10 @@ Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als
 \end{algorithmic}
 \end{algorithm}
 \begin{algorithm}
-\caption{doorlooplijnalgoritme met rekencomplexiteit $O((N+S)Log(N))$}
+\caption{complex doorlooplijnalgoritme met rekencomplexiteit $O((N+S)Log(N))$}
 \begin{algorithmic}
-\State Lijst L: met alle punten, gesorteerd op het laagste x-co\"ordinaat daarna op het laagste y-co\"ordinaat.
-\State Lijst C: met alle cirkels op een bepaald moment van een eventpoint, ongesorteerd.
+\State Lijst L: met alle punten, gesorteerd op het laagste x-co\"ordinaat daarna op het laagste y-co\"ordinaat en daarna komen linkse punten van een segment voor rechtse punten.
+\State Lijst S: met alle segmenten op een bepaald moment van een eventpoint, ongesorteerd.
 \For {elk punt p in de gesorteerde lijst}
 	\If {p is het linkse eindpunt van een cirkel c}
 	

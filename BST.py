@@ -1,10 +1,4 @@
 __author__ = 'Ward Schodts en Robin Goots'
-'''
-   Modified algorithm of Adrian Statescu
-   Binary Search Tree
-   ------------------
-
-'''
 
 
 class Node:
