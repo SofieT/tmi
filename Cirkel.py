@@ -42,12 +42,14 @@ class Cirkel():
         """
         lo = Punt(self.linksxco, self.linksyco - self.r)
         hi = Punt(self.linksxco, self.linksyco + self.r)
+        self.segment = Segment(lo, hi, self)
+        lo.setSegment(self.segment)
+        hi.setSegment(self.segment)
 
     def check_overlap(self, other_cirkel):
         """
         Checkt of deze cirkel overlapt met de andere cirkel
         """
-
         e = self.getXco() - other_cirkel.getXco()
         f = self.getYco() - other_cirkel.getYco()
         p = sqrt(e**2 + f**2)

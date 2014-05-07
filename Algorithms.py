@@ -1,4 +1,5 @@
 from BST import Searchtree
+from RedBlackBST import RedBlackBST
 
 __author__ = 'Ward Schodts en Robin Goots'
 
@@ -41,9 +42,6 @@ class Algo2(object):
 
     def execute(self):
 
-        for c in self.circle_list:
-            c.twee()
-
         self.sort_circle_list()
         circle = list()
         while not self.bst.is_empty():
@@ -78,7 +76,21 @@ class Algo3(object):
         self.circle_list = circle_list
 
     def execute(self):
-        pass
+        self.sort_circle_list()
+        circleTree = RedBlackBST()
+
+        while not self.bst.is_empty():
+            temp = self.bst.pop()
+
+            if temp.hand == 0:
+                for o in circleTree.overlap(temp.segment):
+                    intersections = o.circle.calculate_intersections(temp.segment.circle)
+                    for t in intersections:
+                        self.intersection_list.append(t)
+                circleTree.put(temp.segment)
+            else:
+                circleTree.delete(temp.segment)
+
 
     def get_intersections(self):
         return self.intersection_list

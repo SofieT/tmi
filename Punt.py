@@ -16,6 +16,9 @@ class Punt():
     def getYco(self):
         return self.yco
 
+    def setSegment(self, segment):
+        self.segment = segment
+
     # Methode om twee punten te vergelijken
     # @return true a.s.a. het punt waarop de methode wordt uitgevoerd links ligt van het meegegeven punt
     def compare(self, point):
