@@ -1,7 +1,7 @@
 __author__ = 'Ward Schodts en Robin Goots'
 
 
-class Node:
+class Node(object):
     def __init__(self, info):  #constructor of class
 
         self.info = info  #information for node
@@ -13,7 +13,7 @@ class Node:
         return str(self.info)  #return as string
 
 
-class Searchtree:
+class Searchtree(object):
     def __init__(self):  #constructor of class
 
         self.root = None

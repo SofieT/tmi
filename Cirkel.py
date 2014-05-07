@@ -28,41 +28,21 @@ class Cirkel():
         """
         Deze methode berekent de 2 hoekpunten van de lijnstukken voor in algoritme 2
         """
-        linksxco = self.xco - self.r
-        linksyco = self.yco
-        self.linksPunt = Punt(linksxco, linksyco, 0, self)
+        self.linksxco = self.xco - self.r
+        self.linksyco = self.yco
+        self.linksPunt = Punt(self.linksxco, self.linksyco, 0, self)
 
-        rechtsxco = self.xco + self.r
-        rechtsyco = self.yco
-        self.rechtsPunt = Punt(rechtsxco, rechtsyco, 1, self)
-
-    def vier(self):
-        """
-        Deze methode berekent de 4 hoekpunten van de 2 lijnstukken voor in algoritme 3
-        De vier hoekpunten worden als volgt genoemd:
-        """
-         # lb = linksboven
-        lbxco = self.linksxco
-        lbyco = self.yco + self.r
-        self.lbPunt = Punt(lbxco, lbyco, 0, self.loPunt)
-
-        # lo = linksonder
-        loxco = self.linksxco
-        loyco = self.yco - self.r
-        self.loPunt = Punt(loxco, loyco, 0, self.lbPunt)
-
-        # rb = rechtsboven
-        rbxco = self.rechtsxco
-        rbyco = self.yco + self.r
-        self.rbPunt = Punt(rbxco, rbyco, 1, self.roPunt)
-
-        # ro = rechtsonder
-        roxco = self.rechtsxco
-        royco = self.yco + self.r
-        self.roPunt = Punt(roxco, royco, 1, self.rbPunt)
+        self.rechtsxco = self.xco + self.r
+        self.rechtsyco = self.yco
+        self.rechtsPunt = Punt(self.rechtsxco, self.rechtsyco, 1, self)
 
     def segment(self):
-        pass
+        """
+        Deze methode berekent het segment voor algoritme 3
+        """
+        lo = Punt(self.linksxco, self.linksyco - self.r)
+        hi = Punt(self.linksxco, self.linksyco + self.r)
+
     def check_overlap(self, other_cirkel):
         """
         Checkt of deze cirkel overlapt met de andere cirkel
