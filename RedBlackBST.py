@@ -17,6 +17,10 @@ class Node(object):
         self.max = 0
 
 class RedBlackBST(object):
+
+    root = None
+
+
     def isRed(self, node):
         if node is None:
             return False
