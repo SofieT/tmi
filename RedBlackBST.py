@@ -82,3 +82,53 @@ class RedBlackBST(object):
 
         node.N = node.left.N + node.right.N + 1
         return node
+
+    def delete(self, key):
+        if not self.isRed(self.root.left) and not self.isRed(self.root.right):
+            self.root.color = True
+
+        self.root = self._delete(self.root, key)
+
+        if not self.isEmpty():
+            self.root.color = False
+
+    def _delete(self, node, key):
+        if key.compare(node.key) == 0:
+            if not self.isRed(node.left) and not self.isRed(node.left.left):
+                node = self.moveRedLeft(node)
+            node.left = self._delete(node.left, key)
+
+        else:
+            if self.isRed(node.left):
+                node = self.rotateRight(node)
+            if not self.isRed(node.right) and not self.isRed(node.right.left):
+                node = self.moveRedRight(node)
+            node.right = self._delete(node.right, key)
+
+        return self.balance(node)
+
+    def isEmpty(self):
+        return self.root is None
+
+    def moveRedLeft(self, node):
+        self.flipColors(node)
+        if self.isRed(node.right.left):
+            node.right = self.rotateRight(node.right)
+            node = self.rotateLeft(node)
+        return node
+
+    def moveRedRight(self, node):
+        self.flipColors(node)
+        if self.isRed(node.left.left):
+            node = self.rotateRight(node)
+        return node
+
+    def balance(self, node):
+        if self.isRed(node.right):
+            node = self.rotateLeft(node)
+        if self.isRed(node.left) and self.isRed(node.left.left):
+            node = self.rotateRight(node)
+        if self.isRed(node.left) and self.isRed(node.right):
+            self.flipColors(node)
+        node.N = node.left.N + node.right.N + 1
+        return node
