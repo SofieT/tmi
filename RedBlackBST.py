@@ -14,7 +14,7 @@ class Node(object):
         self.N = N # number of nodes in this subtree
         self.color = color
 
-        self.max = 0
+        self.maxhi = 0
 
 class RedBlackBST(object):
 
@@ -33,11 +33,11 @@ class RedBlackBST(object):
         node_x.color = node.color
         node.color = True
         node_x.N = node.N
-        node.N = node.left.N + node.right.N + 1
+        node.N = self.size(node.left) + self.size(node.right) + 1
         #max voor node
-        node.max = max(node.max, node.left.max, node.right.max)
+        node.maxhi = max(self.size(node), self.size(node.left), self.size(node.right))
         #max voor node_x
-        node_x.max = max(node_x.max, node_x.left.max, node_x.right.max)
+        node_x.maxhi = max(node_x.maxhi, node_x.left.maxhi, node_x.right.maxhi)
         return node_x
 
     def rotateLeft(self, node):
@@ -47,11 +47,11 @@ class RedBlackBST(object):
         node_x.color = node.color
         node.color = True
         node_x.N = node.N
-        node.N = node.left.N + node.right.N + 1
+        node.N = self.size(node.left) + self.size(node.right) + 1
         #max voor node
-        node.max = max(node.max, node.left.max, node.right.max)
+        node.maxhi = max(self.max(node), self.max(node.left), self.max(node.right))
         #max voor node_x
-        node_x.max = max(node_x.max, node_x.left.max, node_x.right.max)
+        node_x.maxhi = max(self.max(node), self.max(node.left), self.max(node.right))
         return node_x
 
     def flipColors(self, node):
@@ -84,7 +84,7 @@ class RedBlackBST(object):
         if self.isRed(node.left) and self.isRed(node.right):
             self.flipColors(node)
 
-        node.N = node.left.N + node.right.N + 1
+        node.N = self.size(node.left) + self.size(node.right) + 1
         return node
 
     def delete(self, key):
@@ -114,6 +114,16 @@ class RedBlackBST(object):
     def isEmpty(self):
         return self.root is None
 
+    def size(self, node):
+        if node is None:
+            return 0
+        return node.N
+    def max(self, node):
+        if node is None:
+            return 0
+        else:
+            return node.maxhi
+
     def moveRedLeft(self, node):
         self.flipColors(node)
         if self.isRed(node.right.left):
@@ -134,7 +144,7 @@ class RedBlackBST(object):
             node = self.rotateRight(node)
         if self.isRed(node.left) and self.isRed(node.right):
             self.flipColors(node)
-        node.N = node.left.N + node.right.N + 1
+        node.N = self.size(node.left) + self.size(node.right) + 1
         return node
 
     def intervalSearch(self, key):

@@ -7,3 +7,8 @@ class Segment():
         self.lo = lo
         self.hi = hi
         self.circle = circle
+
+    def overlaps(self, segment):
+        if self.lo < segment.lo:
+            if self.hi > segment.lo:
+                return True
