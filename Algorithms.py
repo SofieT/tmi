@@ -83,7 +83,7 @@ class Algo3(object):
             temp = self.bst.pop()
 
             if temp.hand == 0:
-                for o in circleTree.overlap(temp.segment):
+                for o in circleTree.intervalSearch(temp.segment, circleTree.root):
                     intersections = o.circle.calculate_intersections(temp.segment.circle)
                     for t in intersections:
                         self.intersection_list.append(t)

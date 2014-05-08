@@ -105,12 +105,25 @@ class RedBlackBST(object):
         else:
             if self.isRed(node.left):
                 node = self.rotateRight(node)
+            if key.compare(node.key) == 2 and node.right is None:
+                return None
             if not self.isRed(node.right) and not self.isRed(node.right.left):
                 node = self.moveRedRight(node)
-            node.right = self._delete(node.right, key)
-
+            if key.compare(node.key) == 2:
+                x = self.min(node.right)
+                node.key = x.key
+                node.val = x.val
+                node.right = self.deleteMin(node.right)
+            else:
+                node.right = self._delete(node.right, key)
         return self.balance(node)
 
+    def min(self, node):
+        if node.left is None:
+            return node
+        else:
+            return self.min(node.left)
+#TODO: deletemin ipmlementeren
     def isEmpty(self):
         return self.root is None
 
@@ -147,5 +160,10 @@ class RedBlackBST(object):
         node.N = self.size(node.left) + self.size(node.right) + 1
         return node
 
-    def intervalSearch(self, key):
-        pass
+    def intervalSearch(self, segment, newroot):
+        overlaplist = list()
+        if segment.overlaps(newroot.val):
+            overlaplist.append(segment)
+            self.intervalSearch(segment, newroot.left.val)
+            self.intervalSearch(segment, newroot.right.val)
+
