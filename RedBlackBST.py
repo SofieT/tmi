@@ -132,3 +132,6 @@ class RedBlackBST(object):
             self.flipColors(node)
         node.N = node.left.N + node.right.N + 1
         return node
+
+    def intervalSearch(self, key):
+        pass

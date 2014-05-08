@@ -3,7 +3,7 @@ __author__ = 'Ward Schodts en Robin Goots'
 
 class Punt():
 
-    def __init__(self, xco, yco, hand, circle, partner=None):
+    def __init__(self, xco, yco, hand = 0, circle = None, partner=None):
         self.xco = xco
         self.yco = yco
         self.hand = hand

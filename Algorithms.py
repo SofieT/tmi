@@ -87,9 +87,9 @@ class Algo3(object):
                     intersections = o.circle.calculate_intersections(temp.segment.circle)
                     for t in intersections:
                         self.intersection_list.append(t)
-                circleTree.put(temp.segment)
+                circleTree.put(temp.segment.lo, temp.segment)
             else:
-                circleTree.delete(temp.segment)
+                circleTree.delete(temp.segment.lo)
 
 
     def get_intersections(self):
