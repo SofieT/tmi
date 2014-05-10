@@ -44,6 +44,8 @@ def test_RB_tree():
     rb_tree.put(punt5, Segment(punt5, punt11, None))
     rb_tree.delete(punt2)
     rb_tree.delete(punt10)
+    rb_tree.delete(punt1)
+    rb_tree.delete(punt5)
     return
 
 test_RB_tree()

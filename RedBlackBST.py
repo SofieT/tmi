@@ -127,8 +127,14 @@ class RedBlackBST(object):
 
 
     def deleteMin(self, node):
-        #TODO: deletemin ipmlementeren
-        raise NotImplementedError
+        if node.left is None:
+            return None
+
+        if not self.isRed(node.left) and not self.isRed(node.left.left):
+            node = self.moveRedLeft(node)
+
+        node.left = self.deleteMin(node.left)
+        return self.balance(node)
 
     def isEmpty(self):
         return self.root is None
