@@ -56,9 +56,9 @@ class RedBlackBST(object):
         return x
 
     def flipColors(self, node):
-        node.color = True
-        node.left.color = False
-        node.right.color = False
+        node.color = not node.color
+        node.left.color = not node.left.color
+        node.right.color = not node.right.color
 
     def put(self, key, val):
         self.root = self._put(self.root, key, val)
