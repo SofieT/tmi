@@ -16,6 +16,7 @@ class Node(object):
 
         self.maxhi = 0
 
+
 class RedBlackBST(object):
 
     root = None
@@ -27,32 +28,32 @@ class RedBlackBST(object):
         return node.color
 
     def rotateRight(self, node):
-        node_x = node.left
-        node.left = node_x.right
-        node_x.right = node
-        node_x.color = node.color
-        node.color = True
-        node_x.N = node.N
+        x = node.left
+        node.left = x.right
+        x.right = node
+        x.color = x.right.color
+        x.right.color = True
+        x.N = node.N
         node.N = self.size(node.left) + self.size(node.right) + 1
         #max voor node
         node.maxhi = max(self.size(node), self.size(node.left), self.size(node.right))
         #max voor node_x
         #node_x.maxhi = max(node_x.maxhi, node_x.left.maxhi, node_x.right.maxhi)
-        return node_x
+        return x
 
     def rotateLeft(self, node):
-        node_x = node.right
-        node.right = node_x.left
-        node_x.left = node
-        node_x.color = node.color
-        node.color = True
-        node_x.N = node.N
+        x = node.right
+        node.right = x.left
+        x.left = node
+        x.color = x.left.color
+        x.left.color = True
+        x.N = node.N
         node.N = self.size(node.left) + self.size(node.right) + 1
         #max voor node
         node.maxhi = max(self.max(node), self.max(node.left), self.max(node.right))
         #max voor node_x
-        node_x.maxhi = max(self.max(node), self.max(node.left), self.max(node.right))
-        return node_x
+        #node_x.maxhi = max(self.max(node), self.max(node.left), self.max(node.right))
+        return x
 
     def flipColors(self, node):
         node.color = True
