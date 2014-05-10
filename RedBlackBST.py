@@ -37,7 +37,7 @@ class RedBlackBST(object):
         #max voor node
         node.maxhi = max(self.size(node), self.size(node.left), self.size(node.right))
         #max voor node_x
-        node_x.maxhi = max(node_x.maxhi, node_x.left.maxhi, node_x.right.maxhi)
+        #node_x.maxhi = max(node_x.maxhi, node_x.left.maxhi, node_x.right.maxhi)
         return node_x
 
     def rotateLeft(self, node):
@@ -123,7 +123,12 @@ class RedBlackBST(object):
             return node
         else:
             return self.min(node.left)
-#TODO: deletemin ipmlementeren
+
+
+    def deleteMin(self, node):
+        #TODO: deletemin ipmlementeren
+        raise NotImplementedError
+
     def isEmpty(self):
         return self.root is None
 
