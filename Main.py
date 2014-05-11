@@ -2,7 +2,6 @@
 __author__ = 'Ward Schodts en Robin Goots'
 
 from Cirkel import Cirkel
-#from BST import searchtree
 from Algorithms import Algo1, Algo2, Algo3
 from time import time
 

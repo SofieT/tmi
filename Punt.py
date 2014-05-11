@@ -35,6 +35,8 @@ class Punt():
             return 0
         if self.yco > point.getYco():
             return 1
+        if self.hand is None or point.hand is None:
+            return 2
         if self.hand < point.hand:
             return 0
         if self.hand > point.hand:
