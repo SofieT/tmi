@@ -14,12 +14,20 @@ class Node(object):
         self.N = N # number of nodes in this subtree
         self.color = color
 
-        self.maxhi = 0
+        self.hiest = self.maxhi()
 
+    def maxhi(self):
+        if self.left is not None:
+            a = self.left.segment.hi
+        if self.right is not None:
+            b = self.right.segment.hi
+        c = self.key.segment.hi
+        return max(a, b, c)
 
 class RedBlackBST(object):
 
     root = None
+
 
 
     def isRed(self, node):
@@ -35,10 +43,7 @@ class RedBlackBST(object):
         x.right.color = True
         x.N = node.N
         node.N = self.size(node.left) + self.size(node.right) + 1
-        #max voor node
-        node.maxhi = max(self.size(node), self.size(node.left), self.size(node.right))
-        #max voor node_x
-        #node_x.maxhi = max(node_x.maxhi, node_x.left.maxhi, node_x.right.maxhi)
+        self.maxhi()
         return x
 
     def rotateLeft(self, node):
@@ -48,11 +53,7 @@ class RedBlackBST(object):
         x.color = x.left.color
         x.left.color = True
         x.N = node.N
-        node.N = self.size(node.left) + self.size(node.right) + 1
-        #max voor node
-        node.maxhi = max(self.max(node), self.max(node.left), self.max(node.right))
-        #max voor node_x
-        #node_x.maxhi = max(self.max(node), self.max(node.left), self.max(node.right))
+        self.maxhi()
         return x
 
     def flipColors(self, node):
@@ -68,7 +69,7 @@ class RedBlackBST(object):
     def _put(self, node, key, val):
 
         if node is None:
-            return Node(key, True, 1)
+            return Node(key, val, 1)
 
         cmp = key.compare(node.key)
         if cmp == 0:
@@ -173,9 +174,17 @@ class RedBlackBST(object):
         return node
 
     def intervalSearch(self, segment, newroot):
+
         overlaplist = list()
         if segment.overlaps(newroot.val):
             overlaplist.append(segment)
-            self.intervalSearch(segment, newroot.left.val)
+            if newroot.left is not None:
+                self.intervalSearch(segment, newroot.left.val)
+            if newroot.left is not None:
+                self.intervalSearch(segment, newroot.right.val)
+
+        elif newroot.left.val is None and newroot.right is not None:
             self.intervalSearch(segment, newroot.right.val)
 
+        else:
+            self.intervalSearch(segment, newroot.left.val)

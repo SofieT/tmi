@@ -83,11 +83,14 @@ class Algo3(object):
             temp = self.bst.pop()
 
             if temp.hand == 0:
-                for o in circleTree.intervalSearch(temp.segment, circleTree.root):
-                    intersections = o.circle.calculate_intersections(temp.segment.circle)
-                    for t in intersections:
-                        self.intersection_list.append(t)
-                circleTree.put(temp.segment.lo, temp.segment)
+                if circleTree.root is not None:
+                    for o in circleTree.intervalSearch(temp.segment, circleTree.root):
+                        intersections = o.circle.calculate_intersections(temp.segment.circle)
+                        for t in intersections:
+                            self.intersection_list.append(t)
+                    circleTree.put(temp.segment.lo, temp.segment)
+                else:
+                    circleTree.put(temp.segment.lo, temp.segment)
             else:
                 circleTree.delete(temp.segment.lo)
 
