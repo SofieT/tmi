@@ -19,7 +19,7 @@ class Intervaltree(object):
     def insert(self, segment):
 
         if self.root is None:
-            self.root is Node(segment, None)
+            self.root = Node(segment, None)
 
         else:
 

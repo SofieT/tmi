@@ -1,6 +1,8 @@
+import BST
+from Intervaltree import Intervaltree
+
 __author__ = 'robin'
 
-from BST import Searchtree
 from Punt import Punt
 from RedBlackBST import RedBlackBST
 from Segment import Segment
@@ -19,7 +21,7 @@ punt11 = Punt(-1, 10, None)
 
 
 def test_bst():
-    bst = Searchtree()
+    bst = BST()
     bst.insert(punt1)
     bst.insert(punt2)
     bst.insert(punt5)
@@ -36,16 +38,17 @@ def test_bst():
     print(bst.pop())
     print(bst.pop())
 
+
 def test_RB_tree():
-    rb_tree = RedBlackBST()
-    rb_tree.put(punt1, Segment(punt1, punt8, None))
-    rb_tree.put(punt2, Segment(punt2, punt9, None))
-    rb_tree.put(punt10, Segment(punt10, punt3, None))
-    rb_tree.put(punt5, Segment(punt5, punt11, None))
-    rb_tree.delete(punt2)
-    rb_tree.delete(punt10)
-    rb_tree.delete(punt1)
-    rb_tree.delete(punt5)
+    rb_tree = Intervaltree()
+    rb_tree.insert(Segment(punt1, punt8, None))
+    # rb_tree.put(punt2, Segment(punt2, punt9, None))
+    # rb_tree.put(punt10, Segment(punt10, punt3, None))
+    # rb_tree.put(punt5, Segment(punt5, punt11, None))
+    # rb_tree.delete(punt2)
+    # rb_tree.delete(punt10)
+    # rb_tree.delete(punt1)
+    # rb_tree.delete(punt5)
     return
 
 test_RB_tree()
