@@ -13,8 +13,9 @@ class Node(object):
         self.right = None
         self.N = N # number of nodes in this subtree
         self.color = color
+        self.maxhi = val.hi
 
-        self.hiest = self.maxhi()
+
 
     def maxhi(self):
         if self.left is not None:
@@ -28,7 +29,13 @@ class RedBlackBST(object):
 
     root = None
 
-
+    def maxhi(self):
+        if self.left is not None:
+            a = self.left.segment.hi
+        if self.right is not None:
+            b = self.right.segment.hi
+        c = self.key.segment.hi
+        return max(a, b, c)
 
     def isRed(self, node):
         if node is None:
