@@ -30,3 +30,5 @@ class Segment():
         else:
             return 0
 
+    def __str__(self):
+        return "({0}, {1}  ;  {2}, {3})".format(self.lo.xco, self.lo.yco, self.hi.xco, self.hi.yco)

@@ -64,9 +64,9 @@ class Intervaltree(object):
 
         node = self.search(interval)
 
-        if node == self.root:
-            self.root = None
-            return
+        # if node == self.root:
+        #     self.root = None
+        #     return
         #Geen kinderen
         if node.left is None and node.right is None:
             if node.parent.left == node:
@@ -107,6 +107,7 @@ class Intervaltree(object):
 
     def updateMaxhi(self, node):
         while node is not self.root:
+            a = b = 0
             if node.left is not None:
                 a = node.left.maxhi
             if node.right is not None:
