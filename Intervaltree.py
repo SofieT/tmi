@@ -76,8 +76,16 @@ class Intervaltree(object):
         node = self.search(interval)
 
         # if node == self.root:
-        #     self.root = None
+        #
+        #     # Geen kinderen
+        #     if node.left is None and node.right is None:
+        #         self.root = None
+        #
+        #     # twee kinderen
+        #     elif node.left is not None and node.right is not None:
+        #
         #     return
+
         #Geen kinderen
         if node.left is None and node.right is None:
             if node.parent.left == node:
@@ -87,17 +95,35 @@ class Intervaltree(object):
             self.updateMaxhi(node.parent)
 
         #Twee kinderen
-        if node.left is not None and node.right is not None:
-             node.left.parent = node.right
-             node.right.parent = node.parent
-             node.right.left = node.left
-             if node == node.parent.left:
-                 node.parent.left = node.right
-             else:
-                 node.parent.right = node.right
+        elif node.left is not None and node.right is not None:
 
-             self.updateMaxhi(node.right)
-             node = None
+            # zoek min in rechter subtree.
+            minimum = node.right
+            while True:
+                if minimum.left is not None:
+                    minimum = minimum.left
+                else:
+                    break
+
+
+            minimum.parent = node.parent
+            node.left.parent = minimum
+            if node.right.parent == node:
+                node.right.parent = None
+            else:
+                node.right.parent = minimum
+            minimum.left = node.left
+            minimum.right = node.right
+
+            # min kan nog rechterkind bevatten of geen meer
+            if minimum.right is not None:
+                minimum.parent.left = minimum.right
+                minimum.right.parent = minimum.parent
+            else:
+                minimum.parent.left = None
+
+
+            self.updateMaxhi(node.right)
 
         # 1 kind
         else:
