@@ -22,5 +22,11 @@ class Segment():
                 return True
             else:
                 return False
-
+    def compare(self, other):
+        if self.hi < other.hi:
+            return -1
+        if self.hi > other.hi:
+            return 1
+        else:
+            return 0
 

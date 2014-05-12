@@ -40,7 +40,7 @@ class Searchtree(object):
                         current = current.left
                     else:
                         current.left = Node(point)
-                        break;
+                        break
 
                 elif status == 1:
 
@@ -48,7 +48,7 @@ class Searchtree(object):
                         current = current.right
                     else:
                         current.right = Node(point)
-                        break;
+                        break
 
                 elif status == 4:
                     # Punten komen overeen. Dit ondersteunen we niet.

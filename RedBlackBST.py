@@ -15,16 +15,6 @@ class Node(object):
         self.color = color
         self.maxhi = val.hi
 
-
-
-    def maxhi(self):
-        if self.left is not None:
-            a = self.left.segment.hi
-        if self.right is not None:
-            b = self.right.segment.hi
-        c = self.key.segment.hi
-        return max(a, b, c)
-
 class RedBlackBST(object):
 
     root = None
@@ -50,7 +40,9 @@ class RedBlackBST(object):
         x.right.color = True
         x.N = node.N
         node.N = self.size(node.left) + self.size(node.right) + 1
-        self.maxhi()
+
+        node.maxhi = max(node.maxhi, node.left.maxhi, node.right.maxhi)
+        x.maxhi = max(x.maxhi, x.left.maxhi, x.right.maxhi)
         return x
 
     def rotateLeft(self, node):
@@ -61,6 +53,10 @@ class RedBlackBST(object):
         x.left.color = True
         x.N = node.N
         self.maxhi()
+
+        node.maxhi = max(node.maxhi, node.left.maxhi, node.right.maxhi)
+        x.maxhi = max(x.maxhi, x.left.maxhi, x.right.maxhi)
+
         return x
 
     def flipColors(self, node):
@@ -143,6 +139,11 @@ class RedBlackBST(object):
 
         node.left = self.deleteMin(node.left)
         return self.balance(node)
+
+    def fixUpMax(self, node):
+        while node is not self.root:
+            node.maxhi = max(node.maxhi, node.left.maxhi, node.right.maxhi)
+
 
     def isEmpty(self):
         return self.root is None
