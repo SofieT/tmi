@@ -60,6 +60,17 @@ class Intervaltree(object):
             else:
                 return current
 
+    def searchOverlap(self, interval, root_segment = None):
+
+        intersectionList = list()
+
+        if root_segment is None:
+            root_segment = self.root.value
+
+        if interval.overlaps(root_segment):
+            intersectionList.append()
+
+
     def deleteInterval(self, interval):
 
         node = self.search(interval)
