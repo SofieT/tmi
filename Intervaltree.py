@@ -90,20 +90,39 @@ class Intervaltree(object):
             self.searchOverlap(interval, current)
         else:
             return intersectionList
+
+
+
+    def deleteRoot(self):
+        root = self.root
+        if root.left is None and root.right is None:
+            self.root = None
+        elif root.left is not None and root.right is not None:
+            minimum = self.findMin(root)
+
+            minimum.left = root.left
+            #TODO implementeren
+
+
+
+    def findMin(self, node):
+        minimum = node.right
+        while True:
+            if minimum.left is not None:
+                minimum = minimum.left
+            else:
+                break
+
+        return minimum
+
     def deleteInterval(self, interval):
 
         node = self.search(interval)
 
-        # if node == self.root:
-        #
-        #     # Geen kinderen
-        #     if node.left is None and node.right is None:
-        #         self.root = None
-        #
-        #     # twee kinderen
-        #     elif node.left is not None and node.right is not None:
-        #
-        #     return
+        if node == self.root:
+
+            self.deleteRoot()
+            return
 
         #Geen kinderen
         if node.left is None and node.right is None:
@@ -117,29 +136,34 @@ class Intervaltree(object):
         elif node.left is not None and node.right is not None:
 
             # zoek min in rechter subtree.
-            minimum = node.right
-            while True:
-                if minimum.left is not None:
-                    minimum = minimum.left
-                else:
-                    break
+            minimum = self.findMin(node)# node.left.parent = minimum
+            # minimum.parent = node.parent
+            # minimum.left = node.left
+            #
+            # if node.right != minimum:
+            #     minimum.right = node.right
+            # node = minimum
 
-
-            minimum.parent = node.parent
-            node.left.parent = minimum
-            if node.right.parent == node:
-                node.right.parent = None
-            else:
-                node.right.parent = minimum
             minimum.left = node.left
-            minimum.right = node.right
+            if not minimum == node.right:
+                minimum.right = node.right
 
-            # min kan nog rechterkind bevatten of geen meer
             if minimum.right is not None:
                 minimum.parent.left = minimum.right
                 minimum.right.parent = minimum.parent
+                minimum.right = None
+                #TODO correctheid verefiëren
             else:
                 minimum.parent.left = None
+
+            minimum.parent = node.parent
+            if node.parent.left == node:
+                node.parent.left = minimum
+            else:
+                node.parent.right = minimum
+
+            # min kan nog rechterkind bevatten of geen meer
+
 
 
             self.updateMaxhi(node.right)
