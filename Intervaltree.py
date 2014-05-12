@@ -9,6 +9,7 @@ class Node(object):
 
         self.value = value #information for node
         self.parent = parent
+        self.maxhi = value.hi.yco
 
 
 class Intervaltree(object):
@@ -72,6 +73,7 @@ class Intervaltree(object):
                 node.parent.left = None
             else:
                 node.parent.right = None
+            self.updateMaxhi(node.parent)
 
         #Twee kinderen
         if node.left is not None and node.right is not None:
@@ -82,6 +84,8 @@ class Intervaltree(object):
                  node.parent.left = node.right
              else:
                  node.parent.right = node.right
+
+             self.updateMaxhi(node.right)
              node = None
 
         # 1 kind
@@ -92,9 +96,21 @@ class Intervaltree(object):
                     node.parent.left = node.left
                 else:
                     node.parent.right = node.left
+                self.updateMaxhi(node.left)
             else:
                 node.right.parent = node.parent
                 if node.parent.left == node:
                     node.parent.left = node.right
                 else:
                     node.parent.right = node.right
+                self.updateMaxhi(node.right)
+
+    def updateMaxhi(self, node):
+        while node is not self.root:
+            if node.left is not None:
+                a = node.left.maxhi
+            if node.right is not None:
+                b = node.right.maxhi
+            node.maxhi = max(node.value.hi.yco, a, b)
+
+            node = node.parent
