@@ -23,9 +23,9 @@ class Segment():
             else:
                 return False
     def compare(self, other):
-        if self.hi.yco < other.hi.yco:
+        if self.lo.yco < other.lo.yco:
             return -1
-        if self.hi.yco > other.hi.yco:
+        if self.lo.yco > other.lo.yco:
             return 1
         else:
 

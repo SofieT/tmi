@@ -84,7 +84,7 @@ class Intervaltree(object):
                 nodeQueue.put(current.right)
 
             if current.left is not None:
-                if current.value.lo.yco < current.left.maxhi:
+                if current.value.lo.yco <= current.left.maxhi:
                     nodeQueue.put(current.left)
 
         return intersectionList
