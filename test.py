@@ -54,13 +54,11 @@ def test_RB_tree():
     rb_tree.insert(seg4)
     rb_tree.insert(seg5)
 
-    rb_tree.deleteInterval(seg1)
-    rb_tree.deleteInterval(seg2)
-    # rb_tree.put(punt5, Segment(punt5, punt11, None))
-    # rb_tree.delete(punt2)
-    # rb_tree.delete(punt10)
-    # rb_tree.delete(punt1)
-    # rb_tree.delete(punt5)
+    rb_tree.delete(seg1)
+    rb_tree.delete(seg2)
+    rb_tree.delete(seg3)
+    rb_tree.delete(seg5)
+    rb_tree.delete(seg4)
     return
 
 test_RB_tree()

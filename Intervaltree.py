@@ -202,7 +202,45 @@ class Intervaltree(object):
                 else:
                     node.parent.right = node.right
                 self.updateMaxhi(node.right)
+    def deleteMin(self, node):
+        if node.left is None:
+            return node.right
+        node.left = self.deleteMin(node.left)
+        node.maxhi = self.size(node.left)
+        return node
 
+    def size(self, x):
+        if x is None:
+            return 0
+        else:
+            return x.maxhi
+    def delete(self, key):
+        self.root = self._delete(self.root, key)
+
+    def _delete(self, x, value):
+        if x is None:
+            return None
+        cmp = value.compare(x.value)
+        if cmp < 0:
+            x.left = self._delete(x.left, value)
+        elif cmp > 0:
+            x.right = self._delete(x.right, value)
+        else:
+            if x.right is None:
+                return x.left
+            if x.left is None:
+                return x.right
+            t = x
+            x = self._min(t.right)
+            x.right = self.deleteMin(t.right)
+            x.left = t.left
+        return x
+
+    def _min(self, x):
+        if x.left is None:
+            return x
+        else:
+            return min(x.left   )
     def updateMaxhi(self, node):
         while node is not self.root:
             a = b = 0
