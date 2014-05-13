@@ -1,5 +1,5 @@
 from BST import Searchtree
-from RedBlackBST import RedBlackBST
+from Intervaltree import Intervaltree
 
 __author__ = 'Ward Schodts en Robin Goots'
 
@@ -77,22 +77,21 @@ class Algo3(object):
 
     def execute(self):
         self.sort_circle_list()
-        circleTree = RedBlackBST()
+        circleTree = Intervaltree()
 
         while not self.bst.is_empty():
             temp = self.bst.pop()
 
             if temp.hand == 0:
-                if circleTree.root is not None:
-                    for o in circleTree.intervalSearch(temp.segment, circleTree.root):
-                        intersections = o.circle.calculate_intersections(temp.segment.circle)
-                        for t in intersections:
-                            self.intersection_list.append(t)
-                    circleTree.put(temp.segment.lo, temp.segment)
-                else:
-                    circleTree.put(temp.segment.lo, temp.segment)
+
+                for circle in circleTree.searchOverlap(temp.segment):
+                    if circle.check_overlap(temp.circle):
+                        intersections = circle.calculate_intersections(temp.segment.circle)
+                        for i in intersections:
+                            self.intersection_list.append(i)
+                circleTree.insert(temp.segment)
             else:
-                circleTree.delete(temp.segment.lo)
+                circleTree.delete(temp.segment)
 
 
     def get_intersections(self):

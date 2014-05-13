@@ -44,6 +44,7 @@ class Cirkel():
         hi = Punt(self.linksxco, self.linksyco + self.r)
         self.segment = Segment(lo, hi, self)
         self.linksPunt.setSegment(self.segment)
+        self.rechtsPunt.setSegment(self.segment)
         lo.setSegment(self.segment)
         hi.setSegment(self.segment)
 

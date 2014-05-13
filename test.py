@@ -57,8 +57,8 @@ def test_RB_tree():
     rb_tree.delete(seg1)
     rb_tree.delete(seg2)
     rb_tree.delete(seg3)
-    rb_tree.delete(seg5)
     rb_tree.delete(seg4)
+    rb_tree.delete(seg5)
     return
 
 test_RB_tree()
