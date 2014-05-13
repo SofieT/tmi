@@ -54,6 +54,7 @@ def test_RB_tree():
     rb_tree.insert(seg4)
     rb_tree.insert(seg5)
 
+    rb_tree.deleteInterval(seg1)
     rb_tree.deleteInterval(seg2)
     # rb_tree.put(punt5, Segment(punt5, punt11, None))
     # rb_tree.delete(punt2)

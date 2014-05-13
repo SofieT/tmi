@@ -97,11 +97,26 @@ class Intervaltree(object):
         root = self.root
         if root.left is None and root.right is None:
             self.root = None
+
         elif root.left is not None and root.right is not None:
             minimum = self.findMin(root)
 
             minimum.left = root.left
+            if minimum.right is None:
+                minimum.right = root.right
+            else:
+                minimum.parent.right = minimum.right
+                minimum.right = root.right
             #TODO implementeren
+            self.root = minimum
+
+        else:
+            if root.left is not None:
+                self.root = root.left
+                self.root.parent = None
+            else:
+                self.root = root.right
+                self.root.parent = None
 
 
 
@@ -144,13 +159,16 @@ class Intervaltree(object):
             #     minimum.right = node.right
             # node = minimum
 
+            #parent = node.parent
+            minimum_right = minimum.right
+
             minimum.left = node.left
             if not minimum == node.right:
                 minimum.right = node.right
 
-            if minimum.right is not None:
-                minimum.parent.left = minimum.right
-                minimum.right.parent = minimum.parent
+            if minimum_right is not None:
+                minimum.parent.left = minimum_right
+                minimum_right = minimum.parent
                 minimum.right = None
                 #TODO correctheid verefiëren
             else:
