@@ -22,6 +22,7 @@ def main():
     algorithm.execute()
     end = time()
     save_output(algorithm.get_intersections(), int((end - start) * 1000), True)
+    save_output_svg(algorithm.circle_list)
 
 #Deze methode leest het input bestand en verwacht de naam: cirkles.txt
 
@@ -42,6 +43,16 @@ def readInput():
         print('Kan de file "cirkels.txt" niet openen.')
 
     return algo, aantalCirkels, lijst
+
+def save_output_svg(list):
+    with open('circle.svg', 'w') as f:
+        f.write('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n')
+
+        for l in list:
+            f.write('<circle cx="{0}" cy="{1}" r="{2}"/>\n'.format(l.xco, l.yco, l.r))
+
+        f.write('</svg>\n')
+
 
 
 def save_output(list, execution_time, implemented):
