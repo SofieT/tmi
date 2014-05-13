@@ -28,8 +28,12 @@ def write_to_file(cirkels):
             f.write(str(c.getR()) + "\n")
 
 
+<<<<<<< HEAD
 
 c = generate_cirkels(100)
+=======
+c = generate_cirkels(5)
+>>>>>>> 5dadcd9d216892a9d830e5e12502e03c2eb487e6
 
 
 write_to_file(c)

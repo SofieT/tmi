@@ -66,13 +66,15 @@ def save_output_svg(list):
 
 def save_out_comparison_svg(intersection1, intersection2):
         with open('circle.svg', 'w') as f:
-            f.write('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n')
+
+            f.write('<svg version="1.1" baseProfile="full" width="300" height="200" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg">\n')
 
             for l in intersection1:
-                f.write('<circle cx="{0}" cy="{1}" r="2" fill="yellow"/>\n'.format(str(l[0]), str(l[1])))
+                f.write('<circle cx="{0}" cy="{1}" r="0.01" fill="yellow"/>\n'.format(str(l[0] + 2), str(l[1] + 2)))
 
             for l in intersection2:
-                f.write('<circle cx="{0}" cy="{1}" r="2" fill="red"/>\n'.format(str(l[0]), str(l[1])))
+                f.write('<circle cx="{0}" cy="{1}" r="0.01" fill="red"/>\n'.format(str(l[0] + 2), str(l[1] + 2)))
+
 
             f.write('</svg>\n')
 
