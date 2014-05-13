@@ -37,7 +37,7 @@ def algorithm_comparison(circle_list):
     algo2.execute()
     algo3.execute()
 
-    save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections())
+    save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 2)
 
 def readInput():
 
@@ -64,15 +64,18 @@ def save_output_svg(list):
 
         f.write('</svg>\n')
 
-def save_out_comparison_svg(intersection1, intersection2):
+def save_out_comparison_svg(intersection1, intersection2, circles, offset):
         with open('circle.svg', 'w') as f:
             f.write('<svg version="1.1" baseProfile="full" width="300" height="200" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg">\n')
 
+            for l in circles:
+                f.write('<circle cx="{0}" cy="{1}" r="{2}" fill-opacity="0" stroke="black" stroke-width="0.01"/>\n'.format(l.xco + offset, l.yco + offset, l.r))
+
             for l in intersection1:
-                f.write('<circle cx="{0}" cy="{1}" r="0.01" fill="yellow"/>\n'.format(str(l[0] + 2), str(l[1] + 2)))
+                f.write('<circle cx="{0}" cy="{1}" r="0.01" fill="yellow"/>\n'.format(str(l[0] + offset), str(l[1] + offset)))
 
             for l in intersection2:
-                f.write('<circle cx="{0}" cy="{1}" r="0.01" fill="red"/>\n'.format(str(l[0] + 2), str(l[1] + 2)))
+                f.write('<circle cx="{0}" cy="{1}" r="0.01" fill="red"/>\n'.format(str(l[0] + offset), str(l[1] + offset)))
 
             f.write('</svg>\n')
 

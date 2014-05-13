@@ -69,15 +69,15 @@ Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als
 
 
 \For {elk punt p in L}
-	\If {p is het linkse eindpunt van een cirkel c}
+	\If {p is het linkse eindpunt van een lijnstuk c}
 	
 		\State snijptn = Cirkel.BerekenSnijpunten(c)
 		\State output.VoegToe(snijptn)	
 		\State VoegToe(C,c)
 		
 	\EndIf
-	\If {p is het rechtse eindpunt van een cirkel c}
-	\State Verwijder(C,c)
+	\If {p is het rechtse eindpunt van een lijnstuk c}
+		\State Verwijder(C,c)
 	\EndIf
 \EndFor
 
