@@ -92,7 +92,6 @@ class Intervaltree(object):
             return intersectionList
 
 
-
     def deleteRoot(self):
         root = self.root
         if root.left is None and root.right is None:
@@ -202,6 +201,7 @@ class Intervaltree(object):
                 else:
                     node.parent.right = node.right
                 self.updateMaxhi(node.right)
+
     def deleteMin(self, node):
         if node.left is None:
             return node.right
