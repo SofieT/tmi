@@ -7,7 +7,7 @@
 \usepackage[dutch]{babel}
 
 %Andere breedte en lengthe van een document
-\setlength{\textwidth}{6in} 
+\setlength{\textwidth}{6in}
 \addtolength{\hoffset}{-0.5in}
 \setlength{\topmargin}{-0.2in}
 \setlength{\textheight}{9in}
@@ -28,8 +28,8 @@
 \title{\Huge Toepassingen van meetkunde in de informatica}
 
 \author{Robin Goots\\
-		Ward Schodts\\
-		}
+Ward Schodts\\
+}
 
 \date{2013 - 2014}
 \maketitle
@@ -42,7 +42,7 @@
 \end{center}
 \end{titlepage}
 \section{De onderzoeksvraag}
-Hoe kunnen we de snijpunten van N cirkels vinden? 
+Hoe kunnen we de snijpunten van N cirkels vinden?
 \begin{enumerate}
 \item Wat zijn de verschillende algoritmen?
 \item Wat is de rekencomplexiteit van deze algoritmen?
@@ -64,11 +64,11 @@ Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \State Lijst L met alle cirkels
 \State Lijst ouput (met alle berekende snijpunten tussen de cirkels) = $\emptyset$
 \While {Niet leeg L}
-	\State Cirkel = L.NeemEnVerwijder()
-	\For {c in L}
-	\State snijptn = Cirkel.BerekenSnijpunten(c)
-	\State output.VoegToe(snijptn)
-	\EndFor
+\State Cirkel = L.NeemEnVerwijder()
+\For {c in L}
+\State snijptn = Cirkel.BerekenSnijpunten(c)
+\State output.VoegToe(snijptn)
+\EndFor
 \EndWhile
 
 \Return output
@@ -85,7 +85,7 @@ Dit is de som van de eerste $N-1$ getallen:
 $$ = \frac{N\cdot (N-1)}{2} $$
 Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \subsubsection{Randvoorwaarden}
-Voor dit algoritme leggen we als voorwaarde op dat er geen twee cirkels exact op elkaar mogen liggen. Dan krijgen oneindig veel snijpunten. 
+Voor dit algoritme leggen we als voorwaarde op dat er geen twee cirkels exact op elkaar mogen liggen. Dan krijgen oneindig veel snijpunten.
 
 \subsection{Algoritme 2}
 \subsubsection{Algemeen}
@@ -102,15 +102,15 @@ Dit algoritme gebruikt een doorlooplijn. De gesorteerde lijst wordt afgegaan, te
 
 
 \For {elk punt p in L}
-	\If {p is het linkse eindpunt van een lijnstuk c}
-	
-		\State snijptn = Cirkel.BerekenSnijpunten(c)
-		\State output.VoegToe(snijptn)	
-		\State VoegToe(C,c)
+\If {p is het linkse eindpunt van een lijnstuk c}
 
-	\Else
-		\State Verwijder(C,c)
-	\EndIf
+\State snijptn = Cirkel.BerekenSnijpunten(c)
+\State output.VoegToe(snijptn)
+\State VoegToe(C,c)
+
+\Else
+\State Verwijder(C,c)
+\EndIf
 \EndFor
 
 \Return output
@@ -119,11 +119,11 @@ Dit algoritme gebruikt een doorlooplijn. De gesorteerde lijst wordt afgegaan, te
 Het punt waar de doorlooplijn zich bevindt wordt een evenpoint genoemd.\\
 De methode \verb|BerekenSnijpunten(Cirkel c)| is net hetzelfde als in algortime 1.
 \subsubsection{Complexiteit}
-De 
+De
 \subsubsection{Randvoorwaarden}
 \subsection{Algoritme 3}
 \subsubsection{Algemeen}
-Voor dit algoritme hebben we een benadering gezocht op basis van een algoritme dat voor N rechthoeken het aantal snijpunten berekent. 
+Voor dit algoritme hebben we een benadering gezocht op basis van een algoritme dat voor N rechthoeken het aantal snijpunten berekent.
 \subsubsection{Hoogniveau beschrijving}
 \begin{algorithm}
 \caption{complex doorlooplijnalgoritme met rekencomplexiteit $O((N+S)Log(N))$}
@@ -131,16 +131,16 @@ Voor dit algoritme hebben we een benadering gezocht op basis van een algoritme d
 \State Lijst L: een gesorteerde lijst met $2N$ punten.
 \State Lijst S: met alle segmenten op een bepaald moment van een eventpoint, ongesorteerd.
 \For {elk punt p in de gesorteerde lijst}
-	\If {p is het linkse eindpunt van een cirkel c}
-	
-		\State snijptn = Cirkel.BerekenSnijpunten(c)
-		\State output.VoegToe(snijptn)
-	
-	\State VoegToe(C,c)
-	\EndIf
-	\If {p is het rechtse eindpunt van een cirkel c}
-	\State Verwijder(C,c)
-	\EndIf
+\If {p is het linkse eindpunt van een cirkel c}
+
+\State snijptn = Cirkel.BerekenSnijpunten(c)
+\State output.VoegToe(snijptn)
+
+\State VoegToe(C,c)
+\EndIf
+\If {p is het rechtse eindpunt van een cirkel c}
+\State Verwijder(C,c)
+\EndIf
 \EndFor
 
 \Return output
@@ -209,5 +209,58 @@ Uit dit onderzoek komen we tot de conclusie dat er takken van de zoekboom worden
 
 \section{Onderzoeksmethode}
 
+We hebben voor elk algoritme de uitvoeringstijd en het aantal intersecties gemeten. De metingen lopen telkens tussen 20 en 1000 cirkels met stappen van 20. Om de resultaten zo correct mogelijk te houden hebben we voor verschillende parameters van de straal en het gebied waar de cirkels voorkomen gekozen.
+
+\subsection{Random cirkels tussen -1 en 1 met straal 0,1}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{uitvoeringstijd_01.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{snijpunten_01.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\subsection{Random cirkels tussen -1 en 1 met straal 0,5}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{uitvoeringstijd_05.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{snijpunten_05.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\subsection{Random cirkels tussen -1 en 1 met straal 1}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{uitvoeringstijd_10.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{snijpunten_10.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\subsection{Random cirkels tussen -1000 en 1000 met straal 10}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{uitvoeringstijd_100.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{snijpunten_100.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
 
 \end{document}
