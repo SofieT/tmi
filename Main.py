@@ -44,7 +44,7 @@ def algorithm_comparison(circle_list):
 
 def algorithm_svg_multiple():
     for i in range(1,13):
-        circle_list = generate_cirkels(75, i * 0.08)
+        circle_list = generate_cirkels(1000, i * 0.01)
         algo2 = Algo2(list(circle_list))
         algo3 = Algo3(list(circle_list))
 
@@ -53,7 +53,7 @@ def algorithm_svg_multiple():
 
         save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 2, i)
 
-        print('Run {0}'.format(i))
+        print(str( (len(algo2.get_intersections()) - len(algo3.get_intersections())) / len(algo2.get_intersections()) ))
 
 def readInput():
 
