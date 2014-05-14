@@ -125,11 +125,21 @@ Om eventuele bugs in de code uit te sluiten hebben we een klein aantal cirkels h
 
 \subsubsection*{Algoritme twee}
 
-Bepalen dat algoritme twee correct is, is niet zo makkelijk als algoritme \'e\'en. De code voor het bepalen van dat cirkels snijden en het berekenen van snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier al geen fout meer kan inzitten.
+Bepalen dat algoritme twee correct is, is niet zo makkelijk als algoritme \'e\'en. De code voor het bepalen dat cirkels snijden en het berekenen van snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier al geen fout meer kan inzitten.
 Aangezien algoritme \'e\'en correct is moeten we met algoritme twee dezelfde uitkomst krijgen als we dezelfde invoer geven. Dit maakt het verifi\"eren van de correctheid al een stuk eenvoudiger.
 
 Als eerst hebben we de uitkomst van algoritme \'e\'en en twee naast elkaar geplakt in een rekenblad. Nadat we beide uitkomsten sets gesorteerd hebben, hebben we een paar steekproeven genomen om te controleren of deze dezelfde zijn. Dit bleek zo te zijn. In dit zelfde rekenblad hebben we ook de som genomen van de x-waarden en de y-waarden. Deze twee sommen blijken ook overeen te komen. Uit deze twee proeven kunnen we concluderen dat de resultaten voor beide algoritmen overeen komen.
 
-Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in een bepaalde kleur. Daarne alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft. 
+Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in een bepaalde kleur. Daarne alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft.
+
+De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor de random gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
+
+\subsubsection*{Algoritme drie}
+
+De correctheid van algoritme drie gaan we op dezelde manier bepalen als algoritme twee. De code voor het bepalen dat cirkels snijden en het berekenen van snijpunten hergebruiken we wederom.
+
+Als we de uitkomsten van algoritme \'e\'en en drie in een rekenblad plakken valt ons voor grote aantallen cirkels onmiddelijk op dat algoritme \'e\'en en drie niet hetzelfde aantal snijpunten vinden. Hieruit vermoeden we al dat algoritme drie niet correct werkt.
+
+Ook de visuele test bevestigd ons vermoeden uit de numerieke test. De visuele test brengt wel een interessant gegeven aan het licht. Alle snijpunten die niet gevonden worden blijken in gebieden bij elkaar te liggen. Dit geeft ons het vermoeden dat er een fout zit in onze methode die de boom doorloopt opzoek naar snijdingen met het opgegeven segment.
 
 \end{document}
