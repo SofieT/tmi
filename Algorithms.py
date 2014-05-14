@@ -6,22 +6,22 @@ __author__ = 'Ward Schodts en Robin Goots'
 
 class Algo1(object):
 
-    cirkel_list = list()
+    circle_list = list()
     intersection_list = list()
 
     def __init__(self, cirkel_list):
-        self.cirkel_list = cirkel_list
+        self.circle_list = cirkel_list
 
     def execute(self):
         """
         Voer het algoritme uit.
         """
-        while len(self.cirkel_list) != 0:
+        while len(self.circle_list) != 0:
             # Haal de eerste cirkel van de lijst.
-            cirkel = self.cirkel_list.pop(0)
+            cirkel = self.circle_list.pop(0)
 
             # Itereer over de andere cirkels en check dat ze overlappen.
-            for c in self.cirkel_list:
+            for c in self.circle_list:
                 if cirkel.check_overlap(c):
                     temp = cirkel.calculate_intersections(c)
                     for t in temp:
