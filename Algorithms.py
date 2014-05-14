@@ -70,6 +70,7 @@ class Algo2(object):
 
 
 class Algo3(object):
+    count = 0
     intersection_list = list()
 
     def __init__(self, circle_list):
@@ -89,9 +90,13 @@ class Algo3(object):
                         intersections = circle.calculate_intersections(temp.segment.circle)
                         for i in intersections:
                             self.intersection_list.append(i)
+                    else:
+                        self.count = self.count + 1
+
                 circleTree.insert(temp.segment)
             else:
                 circleTree.delete(temp.segment)
+        print("Het aantal onnodige check's: " + str(self.count))
 
 
     def get_intersections(self):
