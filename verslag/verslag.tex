@@ -4,6 +4,7 @@
 \usepackage{mathtools}
 %Om grotere integralen te krijgen
 \usepackage{relsize}
+\usepackage[dutch]{babel}
 
 %Andere breedte en lengthe van een document
 \setlength{\textwidth}{6in} 
@@ -47,11 +48,16 @@ Hoe kunnen we de snijpunten van N cirkels vinden?
 \item Wat is de rekencomplexiteit van deze algoritmen?
 \item In welke omstandigheden presteert het ene algoritme beter als het andere?
 \end{enumerate}
-\section{De algoritmen}
+\section{Hoogniveau beschrijving van de algoritmen}
 \subsection{Algoritme 1}
-\subsubsection{Algemeen}
 Het eerste algortime is een brute-force algoritme. In essentie neemt het \'e\'en van de N cirkels en gaat het dan deze cirkel vergelijken met elke andere cirkel. Om zo te controleren of de cirkels overlappen en dusdanig \'e\'en of twee punten gemeenschappelijk hebben.
-\subsubsection{Hoogniveau beschrijving}
+\\
+\\
+De complexiteit van het algoritme kan theoretisch gevonden worden op de volgende manier: er zijn $N$ cirkels, de eerste wordt gecontroleerd met $N-1$ anderen, de volgende met $N-2$ anderen, enzovoort. Dit geeft dus het volgende aantal controles:
+$$(N-1) + (N-2) + (N-3) + (N - 4) \cdots $$
+Dit is de som van de eerste $N-1$ getallen:
+$$ = \frac{N\cdot (N-1)}{2} $$
+Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \begin{algorithm}
 \caption{eenvoudig algoritme met rekencomplexiteit $O(N^2)$}
 \begin{algorithmic}
@@ -68,14 +74,9 @@ Het eerste algortime is een brute-force algoritme. In essentie neemt het \'e\'en
 \Return output
 \end{algorithmic}
 \end{algorithm}
+\\
 De functie \verb|NeemEnVerwijder()| geeft het eerste element van de lijst terug en verwijdert het daarna.\\
 De functie \verb|BerekenSnijpunten(Cirkel c)| neemt als argument een cirkel aan en berekent de snijpunten met deze cirkel op de een andere cirkel waar deze methode werd uitgevoerd.
-\subsubsection{Complexiteit}
-De complexiteit van het algoritme kan theoretisch gevonden worden op de volgende manier: er zijn $N$ cirkels, de eerste wordt gecontroleerd met $N-1$ anderen, de volgende met $N-2$ anderen, enzovoort. Dit geeft dus het volgende aantal controles:
-$$(N-1) + (N-2) + (N-3) + (N - 4) \cdots $$
-Dit is de som van de eerste $N-1$ getallen:
-$$ = \frac{N\cdot (N-1)}{2} $$
-Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \subsection{Algoritme 2}
 Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als links eindpunt het meest linkse punt van de cirkel en als rechts eindpunt het meest rechtse eindpunt van de cirkel. Deze twee punten worden bij in het object cirkel opgelsagen. Alle deze $2\cdot N$ punten worden gesorteerd op laagste x-coördinaat, daarna op laagste y-coördinaat, en uiteindelijk op het feit of dat het een links uiterste rechts uiterste is van de cirkel.
 \begin{algorithm}
@@ -147,11 +148,11 @@ Om eventuele bugs in de code uit te sluiten hebben we een klein aantal cirkels h
 \subsubsection*{Algoritme 2}
 
 Het is niet zo eenvoudig om te bewijzen dat algoritme twee correct is. De code voor het bepalen dat twee cirkels snijden en het berekenen van de snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier geen fout inzit.
-Aangezien algoritme \'e\'en correct is moeten we met algoritme twee dezelfde uitkomst krijgen als we dezelfde invoer geven. Dit maakt het verifi\"eren van de correctheid al een stuk eenvoudiger.
+Aangezien algoritme \'e\'en correct is moeten we met algoritme twee dezelfde uitkomst krijgen als we dezelfde invoer gebruiken. Dit maakt het verifi\"eren van de correctheid al een stuk eenvoudiger.
 
-Als eerst hebben we de uitkomst van algoritme \'e\'en en twee naast elkaar geplakt in een rekenblad. Nadat we beide uitkomsten sets gesorteerd hebben, hebben we een paar steekproeven genomen om te controleren of deze dezelfde zijn. Dit bleek zo te zijn. In dit zelfde rekenblad hebben we ook de som genomen van de x-waarden en de y-waarden. Deze twee sommen blijken ook overeen te komen. Uit deze twee proeven kunnen we concluderen dat de resultaten voor beide algoritmen overeen komen.
+Als eerst hebben we de uitkomst van algoritme \'e\'en en twee naast elkaar geplakt in een rekenblad. Nadat we beide uitkomstensets gesorteerd hebben, hebben we een paar steekproeven genomen om te controleren of deze dezelfde zijn. Dit bleek zo te zijn. In dit zelfde rekenblad hebben we ook de som genomen van de x-waarden en de y-waarden. Deze twee sommen blijken ook overeen te komen. Uit deze twee proeven kunnen we concluderen dat de resultaten voor beide algoritmen overeen komen.
 
-Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in een bepaalde kleur. Daarne alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft.
+Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in \'e\'en bepaalde kleur. Daarna alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft.
 
 De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor random gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
 
@@ -162,5 +163,17 @@ De correctheid van algoritme drie gaan we op dezelde manier bepalen als algoritm
 Als we de uitkomsten van algoritme \'e\'en en drie in een rekenblad plakken valt ons voor grote aantallen cirkels onmiddelijk op dat algoritme \'e\'en en drie niet hetzelfde aantal snijpunten vinden. Hieruit vermoeden we al dat algoritme drie niet correct werkt.
 
 Ook de visuele test bevestigd ons vermoeden uit de numerieke test. De visuele test brengt wel een interessant gegeven aan het licht. Alle snijpunten die niet gevonden worden blijken in gebieden bij elkaar te liggen. Dit geeft ons het vermoeden dat er een fout zit in onze methode die de boom doorloopt opzoek naar snijdingen met het opgegeven segment.
+
+Bij nader onderzoek van de code komen we tot de vaststelling dat hoogstwaarschijnlijk onderstaand stuk code verantwoordelijk is voor de foutieve werking. Indien we \\ \verb|nodeQueue.put(current.left)| uitcommenten in de eerste if en commenten in de tweede if blijkt dat algoritme drie correct werkt.
+
+\begin{verbatim}
+if current.left is not None:
+    #nodeQueue.put(current.left)
+    if current.left.maxhi >= interval.lo.yco:
+        nodeQueue.put(current.left)
+                
+\end{verbatim}
+
+Uit dit onderzoek komen we tot de conclusie dat er takken van de zoekboom worden afgesneden die we wel moeten bezoeken. Waar juist de fout zit is voor ons een raadsel.
 
 \end{document}
