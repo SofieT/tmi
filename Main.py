@@ -116,13 +116,13 @@ def benchmark_algorithms():
         algo2.execute()
         end = time()
         times2.append( str(int( (end - start) * 1000 )) )
-        intersections2.append(len(algo1.get_intersections()))
+        intersections2.append(len(algo2.get_intersections()))
 
         start = time()
         algo3.execute()
         end = time()
         times3.append( str(int( (end - start) * 1000 )) )
-        intersections3.append(len(algo1.get_intersections()))
+        intersections3.append(len(algo3.get_intersections()))
 
 
     with open("times1.txt", "w") as f:
