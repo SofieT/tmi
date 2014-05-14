@@ -30,7 +30,7 @@ def write_to_file(cirkels):
 
 
 
-c = generate_cirkels(100)
+c = generate_cirkels(500)
 
 
 

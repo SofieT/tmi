@@ -91,34 +91,6 @@ class Intervaltree(object):
 
         return intersectionList
 
-        # if root_node is None:
-        #     root_node = self.root
-        #
-        # if interval.overlaps(root_node.value):
-        #     intersectionList.append(root_node.value.circle)
-        #
-        #     if root_node.left is not None:
-        #         current = root_node.left
-        #         self.searchOverlap(interval, current)
-        #     if root_node.right is not None:
-        #         current = root_node.right
-        #         self.searchOverlap(interval, current)
-        #
-        # elif root_node.left is None and root_node.right is not None:
-        #     self.searchOverlap(interval, root_node.right)
-        #
-        # elif root_node.left is not None and root_node.left.value.maxhi < interval.lo.yco:
-        #     root_node.left = None
-        #     current = root_node.right
-        #     self.searchOverlap(interval, current)
-        #
-        # elif root_node.left is not None:
-        #     current = root_node.left
-        #     self.searchOverlap(interval, current)
-        # else:
-        #     return intersectionList
-
-
     def deleteMin(self, node):
         if node.left is None:
             return node.right
