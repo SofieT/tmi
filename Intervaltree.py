@@ -84,9 +84,11 @@ class Intervaltree(object):
                 nodeQueue.put(current.right)
 
             if current.left is not None:
+                #Hier zit de fout, vanaf dat we de volgende lijn uitcommenten werkt het programma wel
                 #nodeQueue.put(current.left)
-                if  current.left.maxhi >= interval.lo.yco:
+                if current.left.maxhi >= interval.lo.yco:
                     nodeQueue.put(current.left)
+                    #pass
 
 
         return intersectionList

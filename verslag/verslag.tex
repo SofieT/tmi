@@ -131,27 +131,29 @@ Om de correctheid van de algoritmen te verifi\"eren hebben we verschillende stap
 
 \subsection{Enkele manuele testen}
 
-\subsubsection*{bepalen dat cirkels snijden}
-Onze eerste zorg was er zeker van zijn dat onze methode voor het bepalen dat cirkels snijden correct werkt. Met behulp van internet hebben we formules afgeleid om te bepalen of cirkels snijden. Na dat we deze formules afgeleid hebben, hebben we deze omgezet in Python code.
+\subsubsection*{bepalen dat twee cirkels snijden}
+
+Onze eerste zorg is er zeker van zijn dat onze methode die bepaalt dat twee cirkels snijden correct werkt. Met behulp van internet hebben we formules afgeleid om te bepalen dat twee cirkels snijden of niet. Daarna hebben we deze formules omgezet in Python code.
 
 \subsubsection*{Bepalen van snijpunten van twee cirkels}
-Na dat we er zeker van zijn dat onze cirkels snijden of niet moeten we bepalen waar deze snijden. Wederom hebben we met behulp van internet formules afgeleid om de snijpunten van circels te bepalen. Deze keer hebben we ook tussenstappen bepaald om te berekenen dat er \'e\'en of twee snijpunten zijn. Deze formules hebben we ook omgezet in Python code.
+
+Nu we er zeker van zijn dat we kunnen bepalen dat twee cirkels al dan niet snijden moeten we berekenen waar deze snijden. Wederom hebben we met behulp van internet formules afgeleid om snijpunten van twee circels te berekenen. Deze keer hebben we ook tussenstappen bepaald om te berekenen dat er \'e\'en of twee snijpunten zijn. Deze formules en tussenstappen hebben we ook omgezet in Python code.
 
 \subsubsection*{Algoritme 1}
 
-Aangezien in algoritme \'e\'en alle cirkels met alle andere cirkels vergeleken worden gaan we zeker geen snijpunten missen. Verder hebben we ook al bewezen dat het bepalen dat cirkels snijden en de bepaling van eventuele snijpunten correct zijn. Uit deze twee stellingen kunnen we concluderen dat algoritme \'e\'en correct is.
+Aangezien algoritme \'e\'en alle cirkels met alle andere cirkels vergelijkt gaan er zeker geen snijpunten tussen twee cirkels verloren gaan. Verder hebben we al bewezen dat het bepalen dat twee cirkels snijden en de berekening van eventuele snijpunten correct zijn. Uit deze twee stellingen kunnen we concluderen dat algoritme \'e\'en correct is.
 Om eventuele bugs in de code uit te sluiten hebben we een klein aantal cirkels handmatig berekend. Dit resultaat hebben we vergeleken met het resultaat dat onze code ons geeft.
 
 \subsubsection*{Algoritme 2}
 
-Bepalen dat algoritme twee correct is, is niet zo makkelijk als algoritme \'e\'en. De code voor het bepalen dat cirkels snijden en het berekenen van snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier al geen fout meer kan inzitten.
+Het is niet zo eenvoudig om te bewijzen dat algoritme twee correct is. De code voor het bepalen dat twee cirkels snijden en het berekenen van de snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier geen fout inzit.
 Aangezien algoritme \'e\'en correct is moeten we met algoritme twee dezelfde uitkomst krijgen als we dezelfde invoer geven. Dit maakt het verifi\"eren van de correctheid al een stuk eenvoudiger.
 
 Als eerst hebben we de uitkomst van algoritme \'e\'en en twee naast elkaar geplakt in een rekenblad. Nadat we beide uitkomsten sets gesorteerd hebben, hebben we een paar steekproeven genomen om te controleren of deze dezelfde zijn. Dit bleek zo te zijn. In dit zelfde rekenblad hebben we ook de som genomen van de x-waarden en de y-waarden. Deze twee sommen blijken ook overeen te komen. Uit deze twee proeven kunnen we concluderen dat de resultaten voor beide algoritmen overeen komen.
 
 Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in een bepaalde kleur. Daarne alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft.
 
-De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor de random gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
+De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor random gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
 
 \subsubsection*{Algoritme 3}
 

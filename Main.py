@@ -26,7 +26,9 @@ def main():
     #save_output_svg(algorithm.circle_list)
     #algorithm_comparison(lijst)
 
-    benchmark_algorithms()
+    algorithm_svg_multiple()
+
+    #benchmark_algorithms()
 
 #Deze methode leest het input bestand en verwacht de naam: cirkles.txt
 
@@ -37,7 +39,21 @@ def algorithm_comparison(circle_list):
     algo2.execute()
     algo3.execute()
 
-    save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 40)
+    save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 2)
+
+
+def algorithm_svg_multiple():
+    for i in range(1,13):
+        circle_list = generate_cirkels(75, i * 0.08)
+        algo2 = Algo2(list(circle_list))
+        algo3 = Algo3(list(circle_list))
+
+        algo2.execute()
+        algo3.execute()
+
+        save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 2, i)
+
+        print('Run {0}'.format(i))
 
 def readInput():
 
@@ -64,10 +80,10 @@ def save_output_svg(list):
 
         f.write('</svg>\n')
 
-def save_out_comparison_svg(intersection1, intersection2, circles, offset):
-        with open('circle.svg', 'w') as f:
+def save_out_comparison_svg(intersection1, intersection2, circles, offset, number=1):
+        with open('circle{0}.svg'.format(number), 'w') as f:
 
-            f.write('<svg version="1.1" baseProfile="full" viewBox="0 0 {0} {1}" xmlns="http://www.w3.org/2000/svg">\n'.format(offset*2, offset*2))
+            f.write('<svg version="1.1" baseProfile="full" viewBox="0 0 {0} {1}" width="500" height="500" xmlns="http://www.w3.org/2000/svg">\n'.format(offset*2, offset*2))
 
             for l in circles:
                 f.write('<circle cx="{0}" cy="{1}" r="{2}" fill-opacity="0" stroke="black" stroke-width="0.01"/>\n'.format(l.xco + offset, l.yco + offset, l.r))
@@ -93,7 +109,7 @@ def benchmark_algorithms():
     intersections3 = list()
 
 
-    for i in range(20, 251, 20):
+    for i in range(20, 101, 20):
 
         print('Starting for {0} circles'.format(i))
 

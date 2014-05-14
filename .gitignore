@@ -55,8 +55,10 @@ docs/_build/
 # Mijn eigen toevoeging:
 .idea
 output.txt
+input.txt
 cirkels.txt
 verslag/verslag.aux
 verslag/verslag.synctex.gz
 verslag/verslag.pdf
-
+circle.svg
+*.svg

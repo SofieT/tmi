@@ -2,16 +2,12 @@ from random import random
 from Cirkel import Cirkel
 
 
-def generate_cirkels(amount):
+def generate_cirkels(amount, radius = 1):
 
     cirkels = list()
 
     for a in range(amount):
-
         cirkels.append(Cirkel(1*random(), 1*random(), 0.1*random()))
-
-
-
     return cirkels
 
 
@@ -29,8 +25,8 @@ def write_to_file(cirkels):
 
 
 
+c = generate_cirkels(50000)
 
-c = generate_cirkels(500)
 
 
 

@@ -45,8 +45,6 @@ class Cirkel():
         self.segment = Segment(lo, hi, self)
         self.linksPunt.setSegment(self.segment)
         self.rechtsPunt.setSegment(self.segment)
-        lo.setSegment(self.segment)
-        hi.setSegment(self.segment)
 
     def check_overlap(self, other_cirkel):
         """
@@ -83,39 +81,6 @@ class Cirkel():
             return (x1, y1),
         return (x1, y1),(x2, y2)
 
-    def real_calculate_intersections(self, other_circle):
-        d = sqrt( (self.xco - other_circle.xco)**2 + (self.yco - other_circle.yco)**2 )
-        intermediate = (d + self.r + other_circle.r) * (d + self.r - other_circle.r) * (d - self.r + other_circle.r) + (-d + self.r + other_circle.r)
-        delta = 0.25 * sqrt((d + self.r + other_circle.r) * (d + self.r - other_circle.r)
-                            * (d - self.r + other_circle.r) + (-d + self.r + other_circle.r))
-        x1 = (self.xco + other_circle.xco) / 2  +  ((self.xco - other_circle.xco) * (self.r**2 + other_circle.r**2)) / 2*d**2 + 2 * ((self.yco - other_circle.yco)/d**2) * delta
-        x2 = (self.xco + other_circle.xco) / 2  +  ((self.xco - other_circle.xco) * (self.r**2 + other_circle.r**2)) / 2*d**2 - 2 * ((self.yco - other_circle.yco)/d**2) * delta
-
-        y1 = (self.yco + other_circle.yco) / 2  +  ((other_circle.yco - self.yco) * (self.r**2 + other_circle.r**2)) / 2*d**2 - 2 * ((self.xco - other_circle.xco)/d**2) * delta
-        y2 = (self.yco + other_circle.yco) / 2  +  ((other_circle.yco - self.yco) * (self.r**2 + other_circle.r**2)) / 2*d**2 + 2 * ((self.xco + other_circle.xco)/d**2) * delta
-
-        if x1 == x2 and y1 == y2:
-            return (x1, y1),
-        return (x1, y1),(x2, y2)
-
-    def real2_calculate_intersections(self, other_cirkel):
-
-        e = abs(self.xco - other_cirkel.xco)
-        f = abs(self.yco - other_cirkel.yco)
-        p = sqrt( e**2 + f**2 )
-
-        k = abs(p**2 + self.r**2 - other_cirkel.r**2) / (2 * p)
-
-
-        x1 = self.xco + (e*k)/p + (f/p)*sqrt(abs(self.r ** 2 - k ** 2))
-        y1 = self.yco - (f*k)/p - (e/p)*sqrt(abs(self.r ** 2 - k ** 2))
-
-        x2 = self.xco - (e*k)/p + (f/p)*sqrt(abs(self.r ** 2 - k ** 2))
-        y2 = self.yco + (f*k)/p - (e/p)*sqrt(abs(self.r ** 2 - k ** 2))
-
-        if x1 == x2 and y1 == y2:
-            return (x1, y1),
-        return (x1, y1),(x2, y2)
 
     def get_last_intersection(self):
         return self.last_x, self.last_y
