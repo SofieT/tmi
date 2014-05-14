@@ -7,15 +7,7 @@ def generate_cirkels(amount):
     cirkels = list()
 
     for a in range(amount):
-
-<<<<<<< HEAD
-        cirkels.append(Cirkel(1*random(), 1*random(), 1*random()))
-=======
         cirkels.append(Cirkel(1*random(), 1*random(), 0.1*random()))
->>>>>>> b860020a56a88862d46286c28075ac8c69b4f441
-
-
-
     return cirkels
 
 
