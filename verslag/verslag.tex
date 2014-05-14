@@ -121,9 +121,16 @@ De methode \verb|BerekenSnijpunten(Cirkel c)| is net hetzelfde als in algortime 
 \subsubsection{Complexiteit}
 De 
 \subsubsection{Randvoorwaarden}
+Voor deze implementatie ondersteunen we bijna elke combinatie van de volgende randgevallen:
+\begin{enumerate}
+\item Dezelfde x-co\"ordinaat
+\item Dezelfde y-co\"ordinaat
+\item Dezelfde parter (het andere punt van het lijnstuk dat bij de cirkel hoort)
+\end{enumerate}
+De enige combinatie die we niet ondersteunen is een punt dat dezelfde co\"ordinaten heeft en dezelfde partner. Wat er op neer komt dat het over dezelfde cirkel gaat. Dit zou net zoals in algoritme 1 weer oneindig veel oplossingen geven.
 \subsection{Algoritme 3}
 \subsubsection{Algemeen}
-Voor dit algoritme hebben we een benadering gezocht op basis van een algoritme dat voor N rechthoeken het aantal snijpunten berekent. 
+Voor dit algoritme hebben we een benadering gezocht op basis van een algoritme uit Algorithms Fourth Editions van Princeton dat voor N rechthoeken het aantal snijpunten berekent. Het idee is dat we de cirkels als vierkanten gaan voorstellen.
 \subsubsection{Hoogniveau beschrijving}
 \begin{algorithm}
 \caption{complex doorlooplijnalgoritme met rekencomplexiteit $O((N+S)Log(N))$}
