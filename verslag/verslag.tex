@@ -71,13 +71,20 @@ Het eerste algortime is een brute-force algoritme. In essentie neemt het \'e\'en
 De functie \verb|NeemEnVerwijder()| geeft het eerste element van de lijst terug en verwijdert het daarna.\\
 De functie \verb|BerekenSnijpunten(Cirkel c)| neemt als argument een cirkel aan en berekent de snijpunten met deze cirkel op de een andere cirkel waar deze methode werd uitgevoerd.
 \subsubsection{Complexiteit}
-De complexiteit van het algoritme kan theoretisch gevonden worden op de volgende manier: er zijn $N$ cirkels, de eerste wordt gecontroleerd met $N-1$ anderen, de volgende met $N-2$ anderen, enzovoort. Dit geeft dus het volgende aantal controles:
+De complexiteit van het algoritme kan theoretisch gevonden worden op de volgende manier: er zijn $N$ cirkels, de eerste wordt gecontroleerd (op snijpunten) met $N-1$ anderen, de volgende met $N-2$ anderen, enzovoort. Dit geeft dus het volgende aantal controles:
 $$(N-1) + (N-2) + (N-3) + (N - 4) \cdots $$
 Dit is de som van de eerste $N-1$ getallen:
 $$ = \frac{N\cdot (N-1)}{2} $$
 Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
+\subsubsection{Randvoorwaarden}
+Voor dit algoritme leggen we als voorwaarde op dat er geen twee cirkels exact op elkaar mogen liggen. Dan krijgen oneindig veel snijpunten. 
 \subsection{Algoritme 2}
-Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als links eindpunt het meest linkse punt van de cirkel en als rechts eindpunt het meest rechtse eindpunt van de cirkel. Deze twee punten worden bij in het object cirkel opgelsagen. Alle deze $2\cdot N$ punten worden gesorteerd op laagste x-coördinaat, daarna op laagste y-coördinaat, en uiteindelijk op het feit of dat het een links uiterste rechts uiterste is van de cirkel.
+\subsubsection{Algemeen}
+Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als links eindpunt het meest linkse punt van de cirkel en als rechts eindpunt het meest rechtse eindpunt van de cirkel. Deze twee punten worden bij in het object cirkel opgelsagen. Al deze $2\cdot N$ punten worden gesorteerd op laagste x-coördinaat, daarna op laagste y-coördinaat, en uiteindelijk op het feit of dat het een links uiterste rechts uiterste is van de cirkel.
+\\
+\\
+Dit algoritme gebruikt een doorlooplijn. De gesorteerde lijst wordt afgegaan, telkens wanneer we een links punt van een cirkel tegenkomen voegen we dit toe aan een tweede lijst. Indien we een rechts punt tegenkomen wordt dit punt uit deze tweede lijst verwijderd. Vanaf de moment dat er een cirkel wordt toegevoegd aan de tweede lijst dan wordt deze cirkel met alle andere cirkels in de lijst vergeleken om te controleren of er geen snijpunten zijn.
+\subsubsection{Hoogniveau beschrijving}
 \begin{algorithm}
 \caption{doorlooplijnalgoritme met rekencomplexiteit $O(N^2)$}
 \begin{algorithmic}
@@ -91,9 +98,8 @@ Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als
 		\State snijptn = Cirkel.BerekenSnijpunten(c)
 		\State output.VoegToe(snijptn)	
 		\State VoegToe(C,c)
-		
-	\EndIf
-	\If {p is het rechtse eindpunt van een lijnstuk c}
+
+	\Else
 		\State Verwijder(C,c)
 	\EndIf
 \EndFor
@@ -101,12 +107,19 @@ Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als
 \Return output
 \end{algorithmic}
 \end{algorithm}
-
+Het punt waar de doorlooplijn zich bevindt wordt een evenpoint genoemd.\\
+De methode \verb|BerekenSnijpunten(Cirkel c)| is net hetzelfde als in algortime 1.
+\subsubsection{Complexiteit}
+De 
+\subsubsection{Randvoorwaarden}
 \subsection{Algoritme 3}
+\subsubsection{Algemeen}
+Voor dit algoritme hebben we een benadering van $O((N+R)Log(N)$
+\subsubsection{Hoogniveau beschrijving}
 \begin{algorithm}
 \caption{complex doorlooplijnalgoritme met rekencomplexiteit $O((N+S)Log(N))$}
 \begin{algorithmic}
-\State Lijst L: met alle punten, gesorteerd op het laagste x-co\"ordinaat daarna op het laagste y-co\"ordinaat en daarna komen linkse punten van een segment voor rechtse punten.
+\State Lijst L: een gesorteerde lijst met $2N$ punten.
 \State Lijst S: met alle segmenten op een bepaald moment van een eventpoint, ongesorteerd.
 \For {elk punt p in de gesorteerde lijst}
 	\If {p is het linkse eindpunt van een cirkel c}
@@ -131,29 +144,27 @@ Om de correctheid van de algoritmen te verifi\"eren hebben we verschillende stap
 
 \subsection{Enkele manuele testen}
 
-\subsubsection*{bepalen dat twee cirkels snijden}
-
-Onze eerste zorg is er zeker van zijn dat onze methode die bepaalt dat twee cirkels snijden correct werkt. Met behulp van internet hebben we formules afgeleid om te bepalen dat twee cirkels snijden of niet. Daarna hebben we deze formules omgezet in Python code.
+\subsubsection*{bepalen dat cirkels snijden}
+Onze eerste zorg was er zeker van zijn dat onze methode voor het bepalen dat cirkels snijden correct werkt. Met behulp van internet hebben we formules afgeleid om te bepalen of cirkels snijden. Na dat we deze formules afgeleid hebben, hebben we deze omgezet in Python code.
 
 \subsubsection*{Bepalen van snijpunten van twee cirkels}
-
-Nu we er zeker van zijn dat we kunnen bepalen dat twee cirkels al dan niet snijden moeten we berekenen waar deze snijden. Wederom hebben we met behulp van internet formules afgeleid om snijpunten van twee circels te berekenen. Deze keer hebben we ook tussenstappen bepaald om te berekenen dat er \'e\'en of twee snijpunten zijn. Deze formules en tussenstappen hebben we ook omgezet in Python code.
+Na dat we er zeker van zijn dat onze cirkels snijden of niet moeten we bepalen waar deze snijden. Wederom hebben we met behulp van internet formules afgeleid om de snijpunten van circels te bepalen. Deze keer hebben we ook tussenstappen bepaald om te berekenen dat er \'e\'en of twee snijpunten zijn. Deze formules hebben we ook omgezet in Python code.
 
 \subsubsection*{Algoritme 1}
 
-Aangezien algoritme \'e\'en alle cirkels met alle andere cirkels vergelijkt gaan er zeker geen snijpunten tussen twee cirkels verloren gaan. Verder hebben we al bewezen dat het bepalen dat twee cirkels snijden en de berekening van eventuele snijpunten correct zijn. Uit deze twee stellingen kunnen we concluderen dat algoritme \'e\'en correct is.
+Aangezien in algoritme \'e\'en alle cirkels met alle andere cirkels vergeleken worden gaan we zeker geen snijpunten missen. Verder hebben we ook al bewezen dat het bepalen dat cirkels snijden en de bepaling van eventuele snijpunten correct zijn. Uit deze twee stellingen kunnen we concluderen dat algoritme \'e\'en correct is.
 Om eventuele bugs in de code uit te sluiten hebben we een klein aantal cirkels handmatig berekend. Dit resultaat hebben we vergeleken met het resultaat dat onze code ons geeft.
 
 \subsubsection*{Algoritme 2}
 
-Het is niet zo eenvoudig om te bewijzen dat algoritme twee correct is. De code voor het bepalen dat twee cirkels snijden en het berekenen van de snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier geen fout inzit.
+Bepalen dat algoritme twee correct is, is niet zo makkelijk als algoritme \'e\'en. De code voor het bepalen dat cirkels snijden en het berekenen van snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier al geen fout meer kan inzitten.
 Aangezien algoritme \'e\'en correct is moeten we met algoritme twee dezelfde uitkomst krijgen als we dezelfde invoer geven. Dit maakt het verifi\"eren van de correctheid al een stuk eenvoudiger.
 
 Als eerst hebben we de uitkomst van algoritme \'e\'en en twee naast elkaar geplakt in een rekenblad. Nadat we beide uitkomsten sets gesorteerd hebben, hebben we een paar steekproeven genomen om te controleren of deze dezelfde zijn. Dit bleek zo te zijn. In dit zelfde rekenblad hebben we ook de som genomen van de x-waarden en de y-waarden. Deze twee sommen blijken ook overeen te komen. Uit deze twee proeven kunnen we concluderen dat de resultaten voor beide algoritmen overeen komen.
 
 Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in een bepaalde kleur. Daarne alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft.
 
-De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor random gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
+De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor de random gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
 
 \subsubsection*{Algoritme 3}
 

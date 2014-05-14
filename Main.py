@@ -26,9 +26,9 @@ def main():
     #save_output_svg(algorithm.circle_list)
     #algorithm_comparison(lijst)
 
-    algorithm_svg_multiple()
+    #algorithm_svg_multiple()
 
-    #benchmark_algorithms()
+    benchmark_algorithms()
 
 #Deze methode leest het input bestand en verwacht de naam: cirkles.txt
 
@@ -109,7 +109,7 @@ def benchmark_algorithms():
     intersections3 = list()
 
 
-    for i in range(20, 101, 20):
+    for i in range(20, 1001, 20):
 
         print('Starting for {0} circles'.format(i))
 
