@@ -24,7 +24,9 @@ def main():
     end = time()
     #save_output(algorithm.get_intersections(), int((end - start) * 1000), True)
     #save_output_svg(algorithm.circle_list)
-    algorithm_comparison(lijst)
+    #algorithm_comparison(lijst)
+
+    algorithm_svg_multiple()
 
     #benchmark_algorithms()
 
@@ -38,6 +40,20 @@ def algorithm_comparison(circle_list):
     algo3.execute()
 
     save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 2)
+
+
+def algorithm_svg_multiple():
+    for i in range(1,13):
+        circle_list = generate_cirkels(200, i * 0.05)
+        algo2 = Algo2(list(circle_list))
+        algo3 = Algo3(list(circle_list))
+
+        algo2.execute()
+        algo3.execute()
+
+        save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 2, i)
+
+        print('Run {0}'.format(i))
 
 def readInput():
 
@@ -64,8 +80,8 @@ def save_output_svg(list):
 
         f.write('</svg>\n')
 
-def save_out_comparison_svg(intersection1, intersection2, circles, offset):
-        with open('circle.svg', 'w') as f:
+def save_out_comparison_svg(intersection1, intersection2, circles, offset, number=1):
+        with open('circle{0}.svg'.format(number), 'w') as f:
 
             f.write('<svg version="1.1" baseProfile="full" viewBox="0 0 {0} {1}" xmlns="http://www.w3.org/2000/svg">\n'.format(offset*2, offset*2))
 

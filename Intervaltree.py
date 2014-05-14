@@ -85,7 +85,7 @@ class Intervaltree(object):
 
             if current.left is not None:
                 #nodeQueue.put(current.left)
-                if  current.left.maxhi >= interval.lo.yco:
+                if current.left.maxhi >= interval.lo.yco:
                     nodeQueue.put(current.left)
 
 
