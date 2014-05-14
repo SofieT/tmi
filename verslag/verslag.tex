@@ -40,6 +40,7 @@
 \vfill
 \end{center}
 \end{titlepage}
+
 \section{De onderzoeksvraag}
 Hoe kunnen we de snijpunten van N cirkels vinden? 
 \begin{enumerate}
@@ -47,6 +48,7 @@ Hoe kunnen we de snijpunten van N cirkels vinden?
 \item Wat is de rekencomplexiteit van deze algoritmen?
 \item In welke omstandigheden presteert het ene algoritme beter als het andere?
 \end{enumerate}
+
 \section{Hoogniveau beschrijving van de algoritmen}
 \subsection{Algoritme 1}
 Het eerste algortime is een brute-force algoritme. In essentie neemt het \'e\'en van de N cirkels en gaat het dan deze cirkel vergelijken met elke andere cirkel. Om zo te controleren of de cirkels overlappen en dusdanig \'e\'en of twee punten gemeenschappelijk hebben.
@@ -122,7 +124,7 @@ Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als
 
 \section{Correctheid van de algoritmen verifi\"eren}
 
-Om de correctheid van de algoritmen te verifi\"eren hebben we verschillende stappen ondernomen. Deze stappen moeten in chronologische volgorde worden uitgevoerd omdat we assumpties uit voorgaande stappen gebruiken.
+Om de correctheid van de algoritmen te verifi\"eren hebben we verschillende stappen ondernomen. Deze stappen moeten in chronologische volgorde worden uitgevoerd omdat we assumpties uit voorgaande stappen gebruiken om te huidige stap te verifi\"eren.
 
 \subsection{Enkele manuele testen}
 
@@ -130,8 +132,22 @@ Om de correctheid van de algoritmen te verifi\"eren hebben we verschillende stap
 Onze eerste zorg was er zeker van zijn dat onze methode voor het bepalen dat cirkels snijden correct werkt. Met behulp van internet hebben we formules afgeleid om te bepalen of cirkels snijden. Na dat we deze formules afgeleid hebben, hebben we deze omgezet in Python code.
 
 \subsubsection*{Bepalen van snijpunten van twee cirkels}
-Na dat we er zeker 
+
+Na dat we er zeker van zijn dat onze cirkels snijden of niet moeten we bepalen waar deze snijden. Wederom hebben we met behulp van internet formules afgeleid om de snijpunten van circels te bepalen. Deze keer hebben we ook tussenstappen bepaald om te berekenen dat er \'e\'en of twee snijpunten zijn. Deze formules hebben we ook omgezet in Python code.
+
 
 \subsubsection*{Algoritme \'e\'en}
-Hoewel de correctheid van algoritme \'e\'en triviaal lijkt achten we het toch nodig om de correctheid hiervan te verifi\"eren. Dit hebben we gedaan door voor een klein aantal cirkels de snijpunten manueel uit te rekenen. Uit deze berekeningen bleek dat algoritme \'e\'en correct werkt.
+
+Aangezien in algoritme \'e\'en alle cirkels met alle andere cirkels vergeleken worden gaan we zeker geen snijpunten missen. Verder hebben we ook al bewezen dat het bepalen dat cirkels snijden en de bepaling van eventuele snijpunten correct zijn. Uit deze twee stellingen kunnen we concluderen dat algoritme \'e\'en correct is.
+Om eventuele bugs in de code uit te sluiten hebben we een klein aantal cirkels handmatig berekend. Dit resultaat hebben we vergeleken met het resultaat dat onze code ons geeft.
+
+\subsubsection*{Algoritme twee}
+
+Bepalen dat algoritme twee correct is, is niet zo makkelijk als algoritme \'e\'en. De code voor het bepalen van dat cirkels snijden en het berekenen van snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier al geen fout meer kan inzitten.
+Aangezien algoritme \'e\'en correct is moeten we met algoritme twee dezelfde uitkomst krijgen als we dezelfde invoer geven. Dit maakt het verifi\"eren van de correctheid al een stuk eenvoudiger.
+
+Als eerst hebben we de uitkomst van algoritme \'e\'en en twee naast elkaar geplakt in een rekenblad. Nadat we beide uitkomsten sets gesorteerd hebben, hebben we een paar steekproeven genomen om te controleren of deze dezelfde zijn. Dit bleek zo te zijn. In dit zelfde rekenblad hebben we ook de som genomen van de x-waarden en de y-waarden. Deze twee sommen blijken ook overeen te komen. Uit deze twee proeven kunnen we concluderen dat de resultaten voor beide algoritmen overeen komen.
+
+Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in een bepaalde kleur. Daarne alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft. 
+
 \end{document}
