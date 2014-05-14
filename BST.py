@@ -5,8 +5,8 @@ class Node(object):
     def __init__(self, info):  #constructor of class
 
         self.info = info  #information for node
-        self.left = None  #left leef
-        self.right = None  #right leef
+        self.left = None  #left leaf
+        self.right = None  #right leaf
 
 
     def __str__(self):
