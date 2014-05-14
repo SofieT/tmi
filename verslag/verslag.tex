@@ -77,11 +77,11 @@ Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 De functie \verb|NeemEnVerwijder()| geeft het eerste element van de lijst terug en verwijdert het daarna.\\
 De functie \verb|BerekenSnijpunten(Cirkel c)| neemt als argument een cirkel aan en berekent de snijpunten met deze cirkel op de een andere cirkel waar deze methode werd uitgevoerd.
 \subsection{Algoritme 2}
-Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als links eindpunt het meest linkse punt van de cirkel en als rechts eindpunt het meest rechtse eindpunt van de cirkel.
+Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als links eindpunt het meest linkse punt van de cirkel en als rechts eindpunt het meest rechtse eindpunt van de cirkel. Deze twee punten worden bij in het object cirkel opgelsagen. Alle deze $2\cdot N$ punten worden gesorteerd op laagste x-coördinaat, daarna op laagste y-coördinaat, en uiteindelijk op het feit of dat het een links uiterste rechts uiterste is van de cirkel.
 \begin{algorithm}
 \caption{doorlooplijnalgoritme met rekencomplexiteit $O(N^2)$}
 \begin{algorithmic}
-\State Lijst L: met alle punten, gesorteerd op het laagste x-co\"ordinaat, daarna op het laagste y-co\"ordinaat en daarna komen linkse punten van een lijnstuk voor rechtse punten van een lijnstuk.
+\State Lijst L: een gesorteerde lijst met $2N$ punten.
 \State Lijst C: met alle cirkels op een bepaald moment van een eventpoint, ongesorteerd.
 
 

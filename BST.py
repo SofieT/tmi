@@ -7,7 +7,7 @@ class Node(object):
         self.info = info  #information for node
         self.left = None  #left leef
         self.right = None  #right leef
-        self.level = None  #level none defined
+
 
     def __str__(self):
         return str(self.info)  #return as string
