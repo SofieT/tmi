@@ -8,7 +8,7 @@ def generate_cirkels(amount):
 
     for a in range(amount):
 
-        cirkels.append(Cirkel(1000*random(), 1000*random(), 1*random()))
+        cirkels.append(Cirkel(1*random(), 1*random(), 1*random()))
 
 
 
@@ -30,7 +30,7 @@ def write_to_file(cirkels):
 
 
 
-c = generate_cirkels(1000)
+c = generate_cirkels(300)
 
 
 

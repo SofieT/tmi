@@ -24,9 +24,9 @@ def main():
     end = time()
     #save_output(algorithm.get_intersections(), int((end - start) * 1000), True)
     #save_output_svg(algorithm.circle_list)
-    #algorithm_comparison(lijst)
+    algorithm_comparison(lijst)
 
-    benchmark_algorithms()
+    #benchmark_algorithms()
 
 #Deze methode leest het input bestand en verwacht de naam: cirkles.txt
 
@@ -37,7 +37,7 @@ def algorithm_comparison(circle_list):
     algo2.execute()
     algo3.execute()
 
-    save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 40)
+    save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 2)
 
 def readInput():
 
