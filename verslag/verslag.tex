@@ -41,9 +41,22 @@
 \end{center}
 \end{titlepage}
 \section{De onderzoeksvraag}
-Hoe kunnen we de snijpunten van N circels vinden? Wat zijn de verschillende algoritmen en hun reken.
+Hoe kunnen we de snijpunten van N cirkels vinden? 
+\begin{enumerate}
+\item Wat zijn de verschillende algoritmen?
+\item Wat is de rekencomplexiteit van deze algoritmen?
+\item In welke omstandigheden presteert het ene algoritme beter als het andere?
+\end{enumerate}
 \section{Hoogniveau beschrijving van de algoritmen}
-
+\subsection{Algoritme 1}
+Het eerste algortime is een brute-force algoritme. In essentie neemt het \'e\'en van de N cirkels en gaat het dan deze cirkel vergelijken met elke andere cirkel. Om zo te controleren of de cirkels overlappen en dusdanig \'e\'en of twee punten gemeenschappelijk hebben.
+\\
+\\
+De complexiteit van het algoritme kan theoretisch gevonden worden op de volgende manier: er zijn $N$ cirkels, de eerste wordt gecontroleerd met $N-1$ anderen, de volgende met $N-2$ anderen, enzovoort. Dit geeft dus het volgende aantal controles:
+$$(N-1) + (N-2) + (N-3) + (N - 4) \cdots $$
+Dit is de som van de eerste $N-1$ getallen:
+$$ = \frac{N\cdot (N-1)}{2} $$
+Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \begin{algorithm}
 \caption{eenvoudig algoritme met rekencomplexiteit $O(N^2)$}
 \begin{algorithmic}
@@ -60,7 +73,7 @@ Hoe kunnen we de snijpunten van N circels vinden? Wat zijn de verschillende algo
 \Return output
 \end{algorithmic}
 \end{algorithm}
-
+\subsection{Algoritme 2}
 Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als links eindpunt het meest linkse punt van de cirkel en als rechts eindpunt het meest rechtse eindpunt van de cirkel.
 \begin{algorithm}
 \caption{doorlooplijnalgoritme met rekencomplexiteit $O(N^2)$}
@@ -117,7 +130,7 @@ Om de correctheid van de algoritmen te verifi\"eren hebben we verschillende stap
 Onze eerste zorg was er zeker van zijn dat onze methode voor het bepalen dat cirkels snijden correct werkt. Met behulp van internet hebben we formules afgeleid om te bepalen of cirkels snijden. Na dat we deze formules afgeleid hebben, hebben we deze omgezet in Python code.
 
 \subsubsection*{Bepalen van snijpunten van twee cirkels}
-Na dat we er zeker van zijn dat onze circels snijden of niet moeten we bepalen waar deze snijden. Wederom hebben we met behulp van internet formules afgeleid om de snijpunten van circels te bepalen. Deze keer hebben we ook tussenstappen bepaald om te berekenen dat er e\'e\'n of twee snijpunten zijn. Deze formules hebben we ook omgezet in Python code.
+Na dat we er zeker 
 
 \subsubsection*{Algoritme \'e\'en}
 Hoewel de correctheid van algoritme \'e\'en triviaal lijkt achten we het toch nodig om de correctheid hiervan te verifi\"eren. Dit hebben we gedaan door voor een klein aantal cirkels de snijpunten manueel uit te rekenen. Uit deze berekeningen bleek dat algoritme \'e\'en correct werkt.
