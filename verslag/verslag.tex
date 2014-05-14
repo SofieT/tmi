@@ -47,16 +47,11 @@ Hoe kunnen we de snijpunten van N cirkels vinden?
 \item Wat is de rekencomplexiteit van deze algoritmen?
 \item In welke omstandigheden presteert het ene algoritme beter als het andere?
 \end{enumerate}
-\section{Hoogniveau beschrijving van de algoritmen}
+\section{De algoritmen}
 \subsection{Algoritme 1}
+\subsubsection{Algemeen}
 Het eerste algortime is een brute-force algoritme. In essentie neemt het \'e\'en van de N cirkels en gaat het dan deze cirkel vergelijken met elke andere cirkel. Om zo te controleren of de cirkels overlappen en dusdanig \'e\'en of twee punten gemeenschappelijk hebben.
-\\
-\\
-De complexiteit van het algoritme kan theoretisch gevonden worden op de volgende manier: er zijn $N$ cirkels, de eerste wordt gecontroleerd met $N-1$ anderen, de volgende met $N-2$ anderen, enzovoort. Dit geeft dus het volgende aantal controles:
-$$(N-1) + (N-2) + (N-3) + (N - 4) \cdots $$
-Dit is de som van de eerste $N-1$ getallen:
-$$ = \frac{N\cdot (N-1)}{2} $$
-Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
+\subsubsection{Hoogniveau beschrijving}
 \begin{algorithm}
 \caption{eenvoudig algoritme met rekencomplexiteit $O(N^2)$}
 \begin{algorithmic}
@@ -73,9 +68,14 @@ Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \Return output
 \end{algorithmic}
 \end{algorithm}
-\\
 De functie \verb|NeemEnVerwijder()| geeft het eerste element van de lijst terug en verwijdert het daarna.\\
 De functie \verb|BerekenSnijpunten(Cirkel c)| neemt als argument een cirkel aan en berekent de snijpunten met deze cirkel op de een andere cirkel waar deze methode werd uitgevoerd.
+\subsubsection{Complexiteit}
+De complexiteit van het algoritme kan theoretisch gevonden worden op de volgende manier: er zijn $N$ cirkels, de eerste wordt gecontroleerd met $N-1$ anderen, de volgende met $N-2$ anderen, enzovoort. Dit geeft dus het volgende aantal controles:
+$$(N-1) + (N-2) + (N-3) + (N - 4) \cdots $$
+Dit is de som van de eerste $N-1$ getallen:
+$$ = \frac{N\cdot (N-1)}{2} $$
+Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \subsection{Algoritme 2}
 Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als links eindpunt het meest linkse punt van de cirkel en als rechts eindpunt het meest rechtse eindpunt van de cirkel. Deze twee punten worden bij in het object cirkel opgelsagen. Alle deze $2\cdot N$ punten worden gesorteerd op laagste x-coördinaat, daarna op laagste y-coördinaat, en uiteindelijk op het feit of dat het een links uiterste rechts uiterste is van de cirkel.
 \begin{algorithm}
