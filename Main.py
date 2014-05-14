@@ -26,9 +26,9 @@ def main():
     #save_output_svg(algorithm.circle_list)
     #algorithm_comparison(lijst)
 
-    algorithm_svg_multiple()
+    #algorithm_svg_multiple()
 
-    #benchmark_algorithms()
+    benchmark_algorithms()
 
 #Deze methode leest het input bestand en verwacht de naam: cirkles.txt
 
@@ -44,7 +44,7 @@ def algorithm_comparison(circle_list):
 
 def algorithm_svg_multiple():
     for i in range(1,13):
-        circle_list = generate_cirkels(75, i * 0.08)
+        circle_list = generate_cirkels(1000, i * 0.01)
         algo2 = Algo2(list(circle_list))
         algo3 = Algo3(list(circle_list))
 
@@ -53,7 +53,7 @@ def algorithm_svg_multiple():
 
         save_out_comparison_svg(algo2.get_intersections(), algo3.get_intersections(), circle_list, 2, i)
 
-        print('Run {0}'.format(i))
+        print(str( (len(algo2.get_intersections()) - len(algo3.get_intersections())) / len(algo2.get_intersections()) ))
 
 def readInput():
 
@@ -109,7 +109,7 @@ def benchmark_algorithms():
     intersections3 = list()
 
 
-    for i in range(20, 101, 20):
+    for i in range(20, 1001, 20):
 
         print('Starting for {0} circles'.format(i))
 

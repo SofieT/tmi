@@ -154,6 +154,12 @@ Als eerst hebben we de uitkomst van algoritme \'e\'en en twee naast elkaar gepla
 
 Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in \'e\'en bepaalde kleur. Daarna alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{vb_svg.png}
+\caption*{Voorbeeld van een svg die gegenereerd word}
+\end{figure}
+
 De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor random gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
 
 \subsubsection*{Algoritme 3}
@@ -162,9 +168,15 @@ De correctheid van algoritme drie gaan we op dezelde manier bepalen als algoritm
 
 Als we de uitkomsten van algoritme \'e\'en en drie in een rekenblad plakken valt ons voor grote aantallen cirkels onmiddelijk op dat algoritme \'e\'en en drie niet hetzelfde aantal snijpunten vinden. Hieruit vermoeden we al dat algoritme drie niet correct werkt.
 
-Ook de visuele test bevestigd ons vermoeden uit de numerieke test. De visuele test brengt wel een interessant gegeven aan het licht. Alle snijpunten die niet gevonden worden blijken in gebieden bij elkaar te liggen. Dit geeft ons het vermoeden dat er een fout zit in onze methode die de boom doorloopt opzoek naar snijdingen met het opgegeven segment.
+Ook de visuele test bevestigd ons vermoeden uit de numerieke test. De visuele test brengt wel een interessant gegeven aan het licht. Alle snijpunten die niet gevonden worden blijken in gebieden bij elkaar te liggen. (Zoals blijkt op onderstaande figuur.) Dit geeft ons het vermoeden dat er een fout zit in onze methode die de boom doorloopt opzoek naar snijdingen met het opgegeven segment.
 
-Bij nader onderzoek van de code komen we tot de vaststelling dat hoogstwaarschijnlijk onderstaand stuk code verantwoordelijk is voor de foutieve werking. Indien we \\ \verb|nodeQueue.put(current.left)| uitcommenten in de eerste if en commenten in de tweede if blijkt dat algoritme drie correct werkt.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{gat_midden.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+Bij nader onderzoek van de code komen we tot de vaststelling dat hoogstwaarschijnlijk onderstaand stuk code verantwoordelijk is voor de foutieve werking. Indien we \\ \verb|nodeQueue.put(current.left)| uitcommenten in de eerste if en commenten in de tweede if blijkt dat algoritme drie correct werkt. Op deze manier hebben we algoritme drie terug gereduceerd tot $O(n^{2})$ in het slechtste geval aangezien we elke cirkel terug gaan vergelijken met alle mogelijke cirkels die kunnen snijden.
 
 \begin{verbatim}
 if current.left is not None:
@@ -174,6 +186,9 @@ if current.left is not None:
                 
 \end{verbatim}
 
-Uit dit onderzoek komen we tot de conclusie dat er takken van de zoekboom worden afgesneden die we wel moeten bezoeken. Waar juist de fout zit is voor ons een raadsel.
+Uit dit onderzoek komen we tot de conclusie dat er takken van de zoekboom worden afgesneden die we wel moeten bezoeken. Dit wordt mogelijks veroorzaakt door een verkeerde maxhi waardoor er een cutoff ontstaat in de intervaltree waar er geen zou mogen zijn.
+
+\section{Onderzoeksmethode}
+
 
 \end{document}
