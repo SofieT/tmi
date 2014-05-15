@@ -184,18 +184,18 @@ Om de correctheid van de algoritmen te verifi\"eren hebben we verschillende stap
 
 \subsection{Enkele manuele testen}
 
-\subsubsection*{bepalen dat cirkels snijden}
+\subsubsection{Bepalen dat cirkels snijden}
 Onze eerste zorg was er zeker van zijn dat onze methode voor het bepalen dat cirkels snijden correct werkt. Met behulp van internet hebben we formules afgeleid om te bepalen of cirkels snijden. Na dat we deze formules afgeleid hebben, hebben we deze omgezet in Python code.
 
-\subsubsection*{Bepalen van snijpunten van twee cirkels}
+\subsubsection{Bepalen van snijpunten van twee cirkels}
 Na dat we er zeker van zijn dat onze cirkels snijden of niet moeten we bepalen waar deze snijden. Wederom hebben we met behulp van internet formules afgeleid om de snijpunten van circels te bepalen. Deze keer hebben we ook tussenstappen bepaald om te berekenen dat er \'e\'en of twee snijpunten zijn. Deze formules hebben we ook omgezet in Python code.
 
-\subsubsection*{Algoritme 1}
+\subsubsection{Algoritme 1}
 
 Aangezien in algoritme \'e\'en alle cirkels met alle andere cirkels vergeleken worden gaan we zeker geen snijpunten missen. Verder hebben we ook al bewezen dat het bepalen dat cirkels snijden en de bepaling van eventuele snijpunten correct zijn. Uit deze twee stellingen kunnen we concluderen dat algoritme \'e\'en correct is.
 Om eventuele bugs in de code uit te sluiten hebben we een klein aantal cirkels handmatig berekend. Dit resultaat hebben we vergeleken met het resultaat dat onze code ons geeft.
 
-\subsubsection*{Algoritme 2}
+\subsubsection{Algoritme 2}
 
 
 Het is niet zo eenvoudig om te bewijzen dat algoritme twee correct is. De code voor het bepalen dat twee cirkels snijden en het berekenen van de snijpunten hergebruiken we. Op deze manier zijn we zeker dat hier geen fout inzit.
@@ -203,7 +203,7 @@ Aangezien algoritme \'e\'en correct is moeten we met algoritme twee dezelfde uit
 
 Als eerst hebben we de uitkomst van algoritme \'e\'en en twee naast elkaar geplakt in een rekenblad. Nadat we beide uitkomstensets gesorteerd hebben, hebben we een paar steekproeven genomen om te controleren of deze dezelfde zijn. Dit bleek zo te zijn. In dit zelfde rekenblad hebben we ook de som genomen van de x-waarden en de y-waarden. Deze twee sommen blijken ook overeen te komen. Uit deze twee proeven kunnen we concluderen dat de resultaten voor beide algoritmen overeen komen.
 
-Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en opleverd geschreven in \'e\'en bepaalde kleur. Daarna alle snijpunten die algoritme twee opleverd in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vind door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft.
+Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resultaten die de algoritmes terug geven zijn eenvoudig om te zetten naar een Scalable Vector Graphics bestand. In dit bestand hebben we eerst alle snijpunten die algoritme \'e\'en oplevert geschreven in \'e\'en bepaalde kleur. Daarna alle snijpunten die algoritme twee oplevert in een andere kleur. Aangezien enkel het laatst geschreven punt zichtbaar is, kunnen we makkelijk visueel controleren dat algoritme twee alle snijpunten vindt door te controleren dat het geplotte svg bestand maar \'e\'en kleur weergeeft.
 
 \begin{figure}[H]
 \centering
@@ -211,13 +211,13 @@ Na deze numerieke test hebben we ook nog een visuele test uitgevoerd. De resulta
 \caption*{Voorbeeld van een svg die gegenereerd wordt}
 \end{figure}
 
-De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor de random gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
+De numerieke en visuele test hebben we meermaals uitgevoerd met verschillende parameters voor de willekeurig gegenereerde cirkels om er zeker van te zijn dat onze testen niet toevallig slagen.
 
-\subsubsection*{Algoritme 3}
+\subsubsection{Algoritme 3}
 
-De correctheid van algoritme drie gaan we op dezelde manier bepalen als algoritme twee. De code voor het bepalen dat cirkels snijden en het berekenen van snijpunten hergebruiken we wederom.
+De correctheid van algoritme drie gaan we op dezelfde manier bepalen als algoritme twee. De code voor het bepalen dat cirkels snijden en het berekenen van snijpunten hergebruiken we wederom.
 
-Als we de uitkomsten van algoritme \'e\'en en drie in een rekenblad plakken valt ons voor grote aantallen cirkels onmiddelijk op dat algoritme \'e\'en en drie niet hetzelfde aantal snijpunten vinden. Hieruit vermoeden we al dat algoritme drie niet correct werkt.
+Als we de uitkomsten van algoritme \'e\'en en drie in een rekenblad plakken, valt ons voor grote aantallen cirkels onmiddelijk op dat algoritmes \'e\'en en drie niet hetzelfde aantal snijpunten vinden. Hieruit vermoeden we al dat algoritme drie niet correct werkt.
 
 Ook de visuele test bevestigd ons vermoeden uit de numerieke test. De visuele test brengt wel een interessant gegeven aan het licht. Alle snijpunten die niet gevonden worden blijken in gebieden bij elkaar te liggen. (Zoals blijkt op onderstaande figuur.) Dit geeft ons het vermoeden dat er een fout zit in onze methode die de boom doorloopt opzoek naar snijdingen met het opgegeven segment.
 
@@ -227,7 +227,7 @@ Ook de visuele test bevestigd ons vermoeden uit de numerieke test. De visuele te
 \caption*{Svg die een gebied bevat van snijpunten die niet worden gevonden}
 \end{figure}
 
-Bij nader onderzoek van de code komen we tot de vaststelling dat hoogstwaarschijnlijk onderstaand stuk code verantwoordelijk is voor de foutieve werking. Indien we \\ \verb|nodeQueue.put(current.left)| uitcommenten in de eerste if en commenten in de tweede if blijkt dat algoritme drie correct werkt. Op deze manier hebben we algoritme drie terug gereduceerd tot $O(n^{2})$ in het slechtste geval aangezien we elke cirkel terug gaan vergelijken met alle mogelijke cirkels die kunnen snijden.
+Bij nader onderzoek van de code komen we tot de vaststelling dat hoogstwaarschijnlijk onderstaand stuk code verantwoordelijk is voor de foutieve werking. Indien we \\ \verb|nodeQueue.put(current.left)| uitcommenten in de eerste if en commenten in de tweede if blijkt dat algoritme drie correct werkt. Op deze manier hebben we algoritme drie terug gereduceerd tot $O(N^{2})$ in het slechtste geval aangezien we elke cirkel terug gaan vergelijken met alle mogelijke cirkels die kunnen snijden.
 
 \begin{verbatim}
 if current.left is not None:
@@ -244,7 +244,7 @@ We hebben voor elk algoritme de uitvoeringstijd en het aantal intersecties gemet
 
 Uit deze grafieken kunnen we de rekencomplexiteit van de algoritmen afleiden.
 
-\subsection{Random cirkels tussen 0 en 1 met straal 0,1}
+\subsection{Willekeurige cirkels tussen 0 en 1 met straal 0,1}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uitvoeringstijd_01.png}
@@ -257,7 +257,7 @@ Uit deze grafieken kunnen we de rekencomplexiteit van de algoritmen afleiden.
 \caption*{Snijpunten in functie van het aantal cirkels}
 \end{figure}
 
-\subsection{Random cirkels tussen 0 en 1 met straal 0,5}
+\subsection{Willekeurige cirkels tussen 0 en 1 met straal 0,5}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uitvoeringstijd_05.png}
@@ -270,7 +270,7 @@ Uit deze grafieken kunnen we de rekencomplexiteit van de algoritmen afleiden.
 \caption*{Snijpunten in functie van het aantal cirkels}
 \end{figure}
 
-\subsection{Random cirkels tussen 0 en 1 met straal 1}
+\subsection{Willekeurige cirkels tussen 0 en 1 met straal 1}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uitvoeringstijd_10.png}
@@ -283,7 +283,7 @@ Uit deze grafieken kunnen we de rekencomplexiteit van de algoritmen afleiden.
 \caption*{Snijpunten in functie van het aantal cirkels}
 \end{figure}
 
-\subsection{Random cirkels tussen 0 en 1000 met straal 10}
+\subsection{Willekeurige cirkels tussen 0 en 1000 met straal 10}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uitvoeringstijd_100.png}
@@ -298,21 +298,21 @@ Uit deze grafieken kunnen we de rekencomplexiteit van de algoritmen afleiden.
 
 \section{Bespreking experiment resultaten}
 
-In de onderstaande bespreking, bespreken we algoritme drie zoals we het ge\"implementeerd hebben. Een belangrijke opmerking hierbij is dat algoritme drie niet correct werkt. In verschijdene pogingen hebben we opgemerkt dat het aantal niet herkende snijpunten van algoritme drie soms zeer hoog kan worden.
+In de onderstaande bespreking, bespreken we algoritme drie zoals we het ge\"implementeerd hebben. Een belangrijke opmerking hierbij is dat algoritme drie niet correct werkt. In verschijdene experimenten hebben we opgemerkt dat het aantal niet herkende snijpunten van algoritme drie soms zeer hoog kan worden.
 
-Wat ons onmiddelijk in alle gevallen opvalt is dat het aantal snijdingen kwadratisc toeneemt met het aantal cirkels.
+Wat ons onmiddelijk in alle gevallen opvalt is dat het aantal snijpunten kwadratisch toeneemt met het aantal cirkels. Dit is onafhankelijk van de gekozen parameters voor de experimenten. Er dient wel opgemerkt te worden dat de start waarde van het aantal snijpunten wel afhankelijk is van de gekozen parameters voor de experimenten.
 
-\subsection{Random cirkels tussen 0 en 1 met straal 0,1}
+\subsection{Willekeurige cirkels tussen 0 en 1 met straal 0,1}
 
 Uit het eerste experiment blijkt duidelijk dat algoritme \'e\'en veel trager is dan algoritme twee. Algoritme drie heeft dezelfde trend als algoritme \'e\'en maar is toch net iets sneller. Uit de grafiek is ook duidelijk op te maken dat de algoritme \'e\'en en twee de theoretische rekencomplexiteit volgen. Algoritme drie wijkt af van de theoretische rekencomplexiteit door de foute implementatie.
 
-De complexiteit van algoritme \'e\'en volgt ook perfect de kwadratische groei van het aantal snijpunten.
+De complexiteit van algoritme \'e\'en volgt perfect de kwadratische groei van het aantal snijpunten op een constante na.
 
 Algoritme twee ligt niet samen met algoritme \'e\'en omdat we niet in de worst-case van algoritme twee zitten. In dit specifieke geval zijn er steeds maar een klein aantal van het totaal aantal cirkels die met elkaar snijden. Hierdoor is algoritme twee toch nog relatief snel.
 
-De pieken in de grafieken kunnen verklaard worden door het willekeurig generen van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
+De pieken in de grafieken kunnen verklaard worden door het willekeurig genereren van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
 
-\subsection{Random cirkels tussen 0 en 1 met straal 0,5}
+\subsection{Willekeurige cirkels tussen 0 en 1 met straal 0,5}
 
 Wederom blijkt dat algoritme \'e\'en het traagste is. Op de voet gevolgt door algoritme drie dat net iets beter presteerd. Algoritme twee is weer het snelste van de drie. Ook nu zien we dat algoritme \'e\'en en twee hun theoretische rekencomplexiteit volgen. Algoritme drie wijkt af van de theoretische rekencomplexiteit door de foute implementatie.
 
@@ -320,9 +320,9 @@ In dit geval ligt algoritme drie wel mooi tussen algoritme \'e\'en en twee. Bij 
 
 De verwachte convergentie van algoritme twee naar algoritme \'e\'en blijft wel uit. Om deze te zien dienen we het aantal snijpunten nogmaals te verhogen.
 
-De pieken in de grafieken kunnen verklaard worden door het willekeurig generen van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
+De pieken in de grafieken kunnen verklaard worden door het willekeurig genereren van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
 
-\subsection{Random cirkels tussen 0 en 1 met straal 1}
+\subsection{Willekeurige cirkels tussen 0 en 1 met straal 1}
 
 Bij deze grafiek springt direct de traagheid van algoritme drie in het oog. Algoritme drie is veel trager dan algoritme \'e\'en en twee. Deze traagheid komt waarschijnlijk door de foutieve implementatie van het algoritme.
 
@@ -330,9 +330,9 @@ Een ander opmerkelijk feit is de ligging van algoritme twee in de buurt van algo
 
 In deze grafiek vinden we weer de bevestiging dat algoritme \'e\'en zich volgens zijn theoretische tijdscomplexiteit gedraagt.
 
-De pieken in de grafieken kunnen verklaard worden door het willekeurig generen van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
+De pieken in de grafieken kunnen verklaard worden door het willekeurig genereren van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
 
-\subsection{Random cirkels tussen 0 en 1000 met straal 10}
+\subsection{Willekeurige cirkels tussen 0 en 1000 met straal 10}
 
 Wat ons bij deze grafiek onmiddelijk opvalt is het vlakke verloop van de grafiek van algoritme twee. Indien we naar de parameters van de cirkels kijken kunnen we concluderen dat er relatief weinig snijpunten gaan zijn. In dit specifieke geval gaan er steeds zeer weinig cirkels met elkaar vergeleken worden waardoor algoritme twee zeer snel is.
 
@@ -340,5 +340,5 @@ Algoritme \'e\'en houdt steevast zijn theoretische rekencomplexiteit van $O(N^{2
 
 Algoritme drie houdt zich mooi in het midden tussen algoritme \'e\'en en twee. Dit ligt in de lijn van de verwachten als we de eerste twee grafieken in acht nemen.
 
-De pieken in de grafieken kunnen verklaard worden door het willekeurig generen van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
+De pieken in de grafieken kunnen verklaard worden door het willekeurig genereren van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
 \end{document}
