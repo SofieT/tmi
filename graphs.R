@@ -9,7 +9,7 @@ ni3 = read.table("numberOfIntersections3.txt")
 x = seq(20, length(algo1$V1) * 20, 20)
 
 
-plot(x, algo1$V1, type="n", ylab="Uitvoeringstijd (ms)", xlab="Aantal cirkels")
+plot(x, algo3$V1, type="n", ylab="Uitvoeringstijd (ms)", xlab="Aantal cirkels")
 colors <- rainbow(3)
 
 lines(x, algo1$V1, col=colors[1]) 

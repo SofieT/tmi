@@ -288,7 +288,7 @@ Uit deze grafieken kunnen we de rekencomplexiteit van de algoritmen afleiden.
 
 In de onderstaande bespreking, bespreken we algoritme drie zoals we het ge\"implementeerd hebben. Een belangrijke opmerking hierbij is dat algoritme drie niet correct werkt. In verschijdene pogingen hebben we opgemerkt dat het aantal niet herkende snijpunten van algoritme drie soms zeer hoog kan worden.
 
-Wat ons onmiddelijk in alle gevallen opvalt is dat het aantal snijdingen $O(n^{2})$ toeneemt met het aantal cirkels.
+Wat ons onmiddelijk in alle gevallen opvalt is dat het aantal snijdingen kwadratisch toeneemt met het aantal cirkels.
 
 \subsection{Random cirkels tussen 0 en 1 met straal 0,1}
 
@@ -304,7 +304,7 @@ De pieken in de grafieken kunnen verklaard worden door het willekeurig generen v
 
 Wederom blijkt dat algoritme \'e\'en het traagste is. Op de voet gevolgt door algoritme drie dat net iets beter presteerd. Algoritme twee is weer het snelste van de drie. Ook nu zien we dat algoritme \'e\'en en twee hun theoretische rekencomplexiteit volgen. Algoritme drie wijkt af van de theoretische rekencomplexiteit door de foute implementatie.
 
-In dit geval ligt algoritme drie wel mooi tussen algoritme \'e\'en en twee. Bij grote aantallen cirkels valt ook het $O(n^{2})$ karakter van algoritme \'e\'en op ten opzichte van algoritme drie. De complexiteit van algoritme \'e\'en volgt werderom perfect de kwadratische groei van het aantal snijpunten.
+In dit geval ligt algoritme drie wel mooi tussen algoritme \'e\'en en twee. Bij grote aantallen cirkels valt ook het $O(N^{2})$ karakter van algoritme \'e\'en op ten opzichte van algoritme drie. De complexiteit van algoritme \'e\'en volgt werderom perfect de kwadratische groei van het aantal snijpunten.
 
 De verwachte convergentie van algoritme twee naar algoritme \'e\'en blijft wel uit. Om deze te zien dienen we het aantal snijpunten nogmaals te verhogen.
 
@@ -312,7 +312,21 @@ De pieken in de grafieken kunnen verklaard worden door het willekeurig generen v
 
 \subsection{Random cirkels tussen 0 en 1 met straal 1}
 
+Bij deze grafiek springt direct de traagheid van algoritme drie in het oog. Algoritme drie is veel trager dan algoritme \'e\'en en twee. Deze traagheid komt waarschijnlijk door de foutieve implementatie van het algoritme.
+
+Een ander opmerkelijk feit is de ligging van algoritme twee in de buurt van algoritme \'e\'en. Indien we even naar de parameters van de willekeurige cirkels kijken kunnen we concluderen dat er gigantisch veel snijpunten zijn in een klein oppervlak. Hierdoor gaat algoritme twee zich net als algoritme \'e\'en gedragen. De ietwat betere prestaties van algoritme twee zijn te verklaren door het feit dat algoritme twee de mogelijkheid heeft om een klein aantal cirkels over te slaan.
+
+In deze grafiek vinden we weer de bevestiging dat algoritme \'e\'en zich volgens zijn theoretische tijdscomplexiteit gedraagt.
+
+De pieken in de grafieken kunnen verklaard worden door het willekeurig generen van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
+
 \subsection{Random cirkels tussen 0 en 1000 met straal 10}
 
-Wat ons bij deze grafiek onmiddelijk opvalt is het vlakke verloop van de grafiek van algoritme twee. Indien we naar de parameters van de cirkels kijken kunnen we concluderen dat er relatief weinig snijpunten gaan zijn. In dit specifieke geval gaat de rekencomplexiteit dicht bij $O(n*log(n))$ liggen.
+Wat ons bij deze grafiek onmiddelijk opvalt is het vlakke verloop van de grafiek van algoritme twee. Indien we naar de parameters van de cirkels kijken kunnen we concluderen dat er relatief weinig snijpunten gaan zijn. In dit specifieke geval gaan er steeds zeer weinig cirkels met elkaar vergeleken worden waardoor algoritme twee zeer snel is.
+
+Algoritme \'e\'en houdt steevast zijn theoretische rekencomplexiteit van $O(N^{2})$ aan. Wat we ook verwachten.
+
+Algoritme drie houdt zich mooi in het midden tussen algoritme \'e\'en en twee. Dit ligt in de lijn van de verwachten als we de eerste twee grafieken in acht nemen.
+
+De pieken in de grafieken kunnen verklaard worden door het willekeurig generen van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
 \end{document}
