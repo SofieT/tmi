@@ -93,6 +93,12 @@ Voor het volgende algoritme stellen we elke cirkel voor als een lijnstuk met als
 \\
 \\
 Dit algoritme gebruikt een doorlooplijn. De gesorteerde lijst wordt afgegaan, telkens wanneer we een links punt van een cirkel tegenkomen voegen we dit toe aan een tweede lijst. Indien we een rechts punt tegenkomen wordt dit punt uit deze tweede lijst verwijderd. Vanaf de moment dat er een cirkel wordt toegevoegd aan de tweede lijst dan wordt deze cirkel met alle andere cirkels in de lijst vergeleken om te controleren of er geen snijpunten zijn.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{algo2.png}
+\end{figure}
+In bovenstaande figuur kunnen we het algoritme in werking zien. De rode lijn is de doorlooplijn. Bij punt 1 wordt voor de eerste maal iets toegevoegd, op punt twee wordt een cirkel uit lijst C gehaald. Bij het toevoegen van lijnstuk E in punt 3 wordt er gezocht naar snijpunten met B en D.
 \subsubsection{Hoogniveau beschrijving}
 \begin{algorithm}[H]
 \caption{doorlooplijnalgoritme met rekencomplexiteit $O(N^2)$}
@@ -119,7 +125,11 @@ Dit algoritme gebruikt een doorlooplijn. De gesorteerde lijst wordt afgegaan, te
 Het punt waar de doorlooplijn zich bevindt wordt een evenpoint genoemd.\\
 De methode \verb|BerekenSnijpunten(Cirkel c)| is net hetzelfde als in algortime 1.
 \subsubsection{Complexiteit}
-De complexiteit wordt wederom bepaald door het aantal keer dat we twee cirkels controleren of ze al dan niet snijden. Aangezien deze controle enkel gebeurt bij linkse punten van een lijnstuk dat een cirkel voorstelt, zijn er N controles (uit de lijst van $2\cdot N$ elementen). Bij elke toevoeging van een cirkel op het moment van een eventpoint wordt deze cirkel vergeleken met alle andere cirkels die op dat moment worden bijgehouden door de sweepline in lijst C. In het slechste geval krijgen we dus een scenario waarbij alle rechterpunten van de lijnstukken samenvallen. Hierdoor moeten we opnieuw net zoals in algoritme 1 $$\frac{N*(N-1)}{2}$$ vergelijkingen maken aangezien er nooit een lijnstuk kan worden verwijderd uit lijst C.
+De complexiteit wordt wederom bepaald door het aantal keer dat we twee cirkels controleren of ze al dan niet snijden. Aangezien deze controle enkel gebeurt bij linkse punten van een lijnstuk dat een cirkel voorstelt, zijn er N controles (uit de lijst van $2\cdot N$ elementen). Bij elke toevoeging van een cirkel op het moment van een eventpoint wordt deze cirkel vergeleken met alle andere cirkels die op dat moment worden bijgehouden door de sweepline in lijst C. In het slechste geval krijgen we dus een scenario waarbij alle rechterpunten van de lijnstukken samenvallen. Hierdoor moeten we opnieuw net zoals in algoritme 1 $$\frac{N*(N-1)}{2}$$ vergelijkingen maken aangezien er nooit een lijnstuk kan worden verwijderd uit lijst C. Het probleem wordt goed geïllustreerd door onderstaande afbeelding.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{algo2_probleem.png}
+\end{figure}
 \subsubsection{Randvoorwaarden}
 Voor deze implementatie ondersteunen we bijna elke combinatie van de volgende randgevallen:
 \begin{enumerate}
