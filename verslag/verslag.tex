@@ -7,7 +7,7 @@
 \usepackage[dutch]{babel}
 
 %Andere breedte en lengthe van een document
-\setlength{\textwidth}{6in} 
+\setlength{\textwidth}{6in}
 \addtolength{\hoffset}{-0.5in}
 \setlength{\topmargin}{-0.2in}
 \setlength{\textheight}{9in}
@@ -28,8 +28,8 @@
 \title{\Huge Toepassingen van meetkunde in de informatica}
 
 \author{Robin Goots\\
-		Ward Schodts\\
-		}
+Ward Schodts\\
+}
 
 \date{2013 - 2014}
 \maketitle
@@ -42,7 +42,7 @@
 \end{center}
 \end{titlepage}
 \section{De onderzoeksvraag}
-Hoe kunnen we de snijpunten van N cirkels vinden? 
+Hoe kunnen we de snijpunten van N cirkels vinden?
 \begin{enumerate}
 \item Wat zijn de verschillende algoritmen?
 \item Wat is de rekencomplexiteit van deze algoritmen?
@@ -64,11 +64,11 @@ Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \State Lijst L met alle cirkels
 \State Lijst ouput (met alle berekende snijpunten tussen de cirkels) = $\emptyset$
 \While {Niet leeg L}
-	\State Cirkel = L.NeemEnVerwijder()
-	\For {c in L}
-	\State snijptn = Cirkel.BerekenSnijpunten(c)
-	\State output.VoegToe(snijptn)
-	\EndFor
+\State Cirkel = L.NeemEnVerwijder()
+\For {c in L}
+\State snijptn = Cirkel.BerekenSnijpunten(c)
+\State output.VoegToe(snijptn)
+\EndFor
 \EndWhile
 
 \Return output
@@ -85,7 +85,7 @@ Dit is de som van de eerste $N-1$ getallen:
 $$ = \frac{N\cdot (N-1)}{2} $$
 Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \subsubsection{Randvoorwaarden}
-Voor dit algoritme leggen we als voorwaarde op dat er geen twee cirkels exact op elkaar mogen liggen. Dan krijgen oneindig veel snijpunten. 
+Voor dit algoritme leggen we als voorwaarde op dat er geen twee cirkels exact op elkaar mogen liggen. Dan krijgen oneindig veel snijpunten.
 
 \subsection{Algoritme 2}
 \subsubsection{Algemeen}
@@ -102,15 +102,15 @@ Dit algoritme gebruikt een doorlooplijn. De gesorteerde lijst wordt afgegaan, te
 
 
 \For {elk punt p in L}
-	\If {p is het linkse eindpunt van een lijnstuk c}
-	
-		\State snijptn = Cirkel.BerekenSnijpunten(c)
-		\State output.VoegToe(snijptn)	
-		\State VoegToe(C,c)
+\If {p is het linkse eindpunt van een lijnstuk c}
 
-	\Else
-		\State Verwijder(C,c)
-	\EndIf
+\State snijptn = Cirkel.BerekenSnijpunten(c)
+\State output.VoegToe(snijptn)
+\State VoegToe(C,c)
+
+\Else
+\State Verwijder(C,c)
+\EndIf
 \EndFor
 
 \Return output
@@ -119,7 +119,7 @@ Dit algoritme gebruikt een doorlooplijn. De gesorteerde lijst wordt afgegaan, te
 Het punt waar de doorlooplijn zich bevindt wordt een evenpoint genoemd.\\
 De methode \verb|BerekenSnijpunten(Cirkel c)| is net hetzelfde als in algortime 1.
 \subsubsection{Complexiteit}
-De 
+De complexiteit wordt wederom bepaald door het aantal keer dat we twee cirkels controleren of ze al dan niet snijden. Aangezien deze controle enkel gebeurt bij linkse punten van een lijnstuk dat een cirkel voorstelt, zijn er N controles (uit de lijst van $2\cdot N$ elementen). Bij elke toevoeging van een cirkel op het moment van een eventpoint wordt deze cirkel vergeleken met alle andere cirkels die op dat moment worden bijgehouden door de sweepline in lijst C. In het slechste geval krijgen we dus een scenario waarbij alle rechterpunten van de lijnstukken samenvallen. Hierdoor moeten we opnieuw net zoals in algoritme 1 $$\frac{N*(N-1)}{2}$$ vergelijkingen maken aangezien er nooit een lijnstuk kan worden verwijderd uit lijst C.
 \subsubsection{Randvoorwaarden}
 Voor deze implementatie ondersteunen we bijna elke combinatie van de volgende randgevallen:
 \begin{enumerate}
@@ -130,7 +130,9 @@ Voor deze implementatie ondersteunen we bijna elke combinatie van de volgende ra
 De enige combinatie die we niet ondersteunen is een punt dat dezelfde co\"ordinaten heeft en dezelfde partner. Wat er op neer komt dat het over dezelfde cirkel gaat. Dit zou net zoals in algoritme 1 weer oneindig veel oplossingen geven.
 \subsection{Algoritme 3}
 \subsubsection{Algemeen}
+
 Voor dit algoritme hebben we een benadering gezocht op basis van een algoritme uit Algorithms Fourth Editions van Princeton dat voor N rechthoeken het aantal snijpunten berekent. Het idee is dat we de cirkels als vierkanten gaan voorstellen.
+
 \subsubsection{Hoogniveau beschrijving}
 \begin{algorithm}
 \caption{complex doorlooplijnalgoritme met rekencomplexiteit $O((N+S)Log(N))$}
@@ -138,16 +140,16 @@ Voor dit algoritme hebben we een benadering gezocht op basis van een algoritme u
 \State Lijst L: een gesorteerde lijst met $2N$ punten.
 \State Lijst S: met alle segmenten op een bepaald moment van een eventpoint, ongesorteerd.
 \For {elk punt p in de gesorteerde lijst}
-	\If {p is het linkse eindpunt van een cirkel c}
-	
-		\State snijptn = Cirkel.BerekenSnijpunten(c)
-		\State output.VoegToe(snijptn)
-	
-	\State VoegToe(C,c)
-	\EndIf
-	\If {p is het rechtse eindpunt van een cirkel c}
-	\State Verwijder(C,c)
-	\EndIf
+\If {p is het linkse eindpunt van een cirkel c}
+
+\State snijptn = Cirkel.BerekenSnijpunten(c)
+\State output.VoegToe(snijptn)
+
+\State VoegToe(C,c)
+\EndIf
+\If {p is het rechtse eindpunt van een cirkel c}
+\State Verwijder(C,c)
+\EndIf
 \EndFor
 
 \Return output
@@ -216,5 +218,58 @@ Uit dit onderzoek komen we tot de conclusie dat er takken van de zoekboom worden
 
 \section{Onderzoeksmethode}
 
+We hebben voor elk algoritme de uitvoeringstijd en het aantal intersecties gemeten. De metingen lopen telkens tussen 20 en 1000 cirkels met stappen van 20. Om de resultaten zo correct mogelijk te houden hebben we voor verschillende parameters van de straal en het gebied waar de cirkels voorkomen gekozen.
+
+\subsection{Random cirkels tussen -1 en 1 met straal 0,1}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{uitvoeringstijd_01.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{snijpunten_01.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\subsection{Random cirkels tussen -1 en 1 met straal 0,5}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{uitvoeringstijd_05.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{snijpunten_05.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\subsection{Random cirkels tussen -1 en 1 met straal 1}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{uitvoeringstijd_10.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{snijpunten_10.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\subsection{Random cirkels tussen -1000 en 1000 met straal 10}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{uitvoeringstijd_100.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{snijpunten_100.png}
+\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\end{figure}
 
 \end{document}
