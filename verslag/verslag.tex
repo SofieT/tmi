@@ -211,56 +211,89 @@ Uit dit onderzoek komen we tot de conclusie dat er takken van de zoekboom worden
 
 We hebben voor elk algoritme de uitvoeringstijd en het aantal intersecties gemeten. De metingen lopen telkens tussen 20 en 1000 cirkels met stappen van 20. Om de resultaten zo correct mogelijk te houden hebben we voor verschillende parameters van de straal en het gebied waar de cirkels voorkomen gekozen.
 
-\subsection{Random cirkels tussen -1 en 1 met straal 0,1}
+Uit deze grafieken kunnen we de rekencomplexiteit van de algoritmen afleiden.
+
+\subsection{Random cirkels tussen 0 en 1 met straal 0,1}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uitvoeringstijd_01.png}
-\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\caption*{Uitvoeringstijd in functie van het aantal cirkels}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{snijpunten_01.png}
-\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\caption*{Snijpunten in functie van het aantal cirkels}
 \end{figure}
 
-\subsection{Random cirkels tussen -1 en 1 met straal 0,5}
+\subsection{Random cirkels tussen 0 en 1 met straal 0,5}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uitvoeringstijd_05.png}
-\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\caption*{Uitvoeringstijd in functie van het aantal cirkels}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{snijpunten_05.png}
-\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\caption*{Snijpunten in functie van het aantal cirkels}
 \end{figure}
 
-\subsection{Random cirkels tussen -1 en 1 met straal 1}
+\subsection{Random cirkels tussen 0 en 1 met straal 1}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uitvoeringstijd_10.png}
-\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\caption*{Uitvoeringstijd in functie van het aantal cirkels}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{snijpunten_10.png}
-\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\caption*{Snijpunten in functie van het aantal cirkels}
 \end{figure}
 
-\subsection{Random cirkels tussen -1000 en 1000 met straal 10}
+\subsection{Random cirkels tussen 0 en 1000 met straal 10}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{uitvoeringstijd_100.png}
-\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\caption*{Uitvoeringstijd in functie van het aantal cirkels}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{snijpunten_100.png}
-\caption*{Svg die een gebied bevat van snijpunten die niet gevonden worden}
+\caption*{Snijpunten in functie van het aantal cirkels}
 \end{figure}
 
+\section{Bespreking experiment resultaten}
+
+In de onderstaande bespreking, bespreken we algoritme drie zoals we het ge\"implementeerd hebben. Een belangrijke opmerking hierbij is dat algoritme drie niet correct werkt. In verschijdene pogingen hebben we opgemerkt dat het aantal niet herkende snijpunten van algoritme drie soms zeer hoog kan worden.
+
+Wat ons onmiddelijk in alle gevallen opvalt is dat het aantal snijdingen $O(n^{2})$ toeneemt met het aantal cirkels.
+
+\subsection{Random cirkels tussen 0 en 1 met straal 0,1}
+
+Uit het eerste experiment blijkt duidelijk dat algoritme \'e\'en veel trager is dan algoritme twee. Algoritme drie heeft dezelfde trend als algoritme \'e\'en maar is toch net iets sneller. Uit de grafiek is ook duidelijk op te maken dat de algoritme \'e\'en en twee de theoretische rekencomplexiteit volgen. Algoritme drie wijkt af van de theoretische rekencomplexiteit door de foute implementatie.
+
+De complexiteit van algoritme \'e\'en volgt ook perfect de kwadratische groei van het aantal snijpunten.
+
+Algoritme twee ligt niet samen met algoritme \'e\'en omdat we niet in de worst-case van algoritme twee zitten. In dit specifieke geval zijn er steeds maar een klein aantal van het totaal aantal cirkels die met elkaar snijden. Hierdoor is algoritme twee toch nog relatief snel.
+
+De pieken in de grafieken kunnen verklaard worden door het willekeurig generen van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
+
+\subsection{Random cirkels tussen 0 en 1 met straal 0,5}
+
+Wederom blijkt dat algoritme \'e\'en het traagste is. Op de voet gevolgt door algoritme drie dat net iets beter presteerd. Algoritme twee is weer het snelste van de drie. Ook nu zien we dat algoritme \'e\'en en twee hun theoretische rekencomplexiteit volgen. Algoritme drie wijkt af van de theoretische rekencomplexiteit door de foute implementatie.
+
+In dit geval ligt algoritme drie wel mooi tussen algoritme \'e\'en en twee. Bij grote aantallen cirkels valt ook het $O(n^{2})$ karakter van algoritme \'e\'en op ten opzichte van algoritme drie. De complexiteit van algoritme \'e\'en volgt werderom perfect de kwadratische groei van het aantal snijpunten.
+
+De verwachte convergentie van algoritme twee naar algoritme \'e\'en blijft wel uit. Om deze te zien dienen we het aantal snijpunten nogmaals te verhogen.
+
+De pieken in de grafieken kunnen verklaard worden door het willekeurig generen van cirkels maar ook door andere processen die de CPU belasten alsook de garbage-collection van ons programma. 
+
+\subsection{Random cirkels tussen 0 en 1 met straal 1}
+
+\subsection{Random cirkels tussen 0 en 1000 met straal 10}
+
+Wat ons bij deze grafiek onmiddelijk opvalt is het vlakke verloop van de grafiek van algoritme twee. Indien we naar de parameters van de cirkels kijken kunnen we concluderen dat er relatief weinig snijpunten gaan zijn. In dit specifieke geval gaat de rekencomplexiteit dicht bij $O(n*log(n))$ liggen.
 \end{document}
