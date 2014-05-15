@@ -191,7 +191,13 @@ Een operatie die hier mee samenhangt is een node verwijderen uit de boom wat in 
 \\
 Het totaal voorlopig geeft dus:
 $$O(R\cdot K \cdot Log(N)) + O(K\cdot Log(N)) + O(K\cdot Log(N)) = O(R\cdot K \cdot Log(N))$$ 
-Al
+Het zoeken naar overlappingen en het toevoegen van een interval wordt uitgevoerd telkens wanneer de sweepline een links punt van een lijnstuk tegenkomt. Dit is dus N keer.
+Indien het eventpoint een rechtspunt is dan wordt de verwijdermethode uitgevoerd. Dit gebeurt dus ook N keer.
+\\
+\\
+We krijgen dus een groot totaal van:
+$$O\Big( N(R\cdot K \cdot Log(N)) + O(K\cdot Log(N)) \Big) + O\Big(N(K\cdot Log(N))\Big) = O(N(R\cdot K \cdot Log(N)))$$ 
+In het gemiddeld geval is dit dus een goede benadering op enkele constanten na van $O((N+S)Log(N))$ aangezien we er van uitgaan dat het aantal onnodige checks ten op zichte van het totaal aantal checks beperkt blijft.
 \subsubsection{Randgevallen}
 De sterkste beperking wordt opgelegd door de intervaltree. Er mogen namelijk geen twee exact dezelfde intervallen zijn die een zelfde laagste punt hebben (een interval bestaat uit een lo, laagste punt en een hi, het hoogste punt). Ook al zijn de intervallen misschien niet evenlang. 
 \section{Correctheid van de algoritmen verifi\"eren}
