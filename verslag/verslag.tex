@@ -50,14 +50,9 @@ Hoe kunnen we de snijpunten van N cirkels vinden?
 \end{enumerate}
 \section{Hoogniveau beschrijving van de algoritmen}
 \subsection{Algoritme 1}
+\subsubsection{Algemeen}
 Het eerste algortime is een brute-force algoritme. In essentie neemt het \'e\'en van de N cirkels en gaat het dan deze cirkel vergelijken met elke andere cirkel. Om zo te controleren of de cirkels overlappen en dusdanig \'e\'en of twee punten gemeenschappelijk hebben.
-\\
-\\
-De complexiteit van het algoritme kan theoretisch gevonden worden op de volgende manier: er zijn $N$ cirkels, de eerste wordt gecontroleerd met $N-1$ anderen, de volgende met $N-2$ anderen, enzovoort. Dit geeft dus het volgende aantal controles:
-$$(N-1) + (N-2) + (N-3) + (N - 4) \cdots $$
-Dit is de som van de eerste $N-1$ getallen:
-$$ = \frac{N\cdot (N-1)}{2} $$
-Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
+\subsubsection{Hoogniveau beschrijving}
 \begin{algorithm}
 \caption{eenvoudig algoritme met rekencomplexiteit $O(N^2)$}
 \begin{algorithmic}
@@ -74,7 +69,6 @@ Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
 \Return output
 \end{algorithmic}
 \end{algorithm}
-\\
 De functie \verb|NeemEnVerwijder()| geeft het eerste element van de lijst terug en verwijdert het daarna.\\
 De functie \verb|BerekenSnijpunten(Cirkel c)| neemt als argument een cirkel aan en berekent de snijpunten met deze cirkel op de een andere cirkel waar deze methode werd uitgevoerd.
 
@@ -84,8 +78,8 @@ $$(N-1) + (N-2) + (N-3) + (N - 4) \cdots $$
 Dit is de som van de eerste $N-1$ getallen:
 $$ = \frac{N\cdot (N-1)}{2} $$
 Dit komt dus overeen met een rekencomplexiteit $O(N^2)$
-\subsubsection{Randvoorwaarden}
-Voor dit algoritme leggen we als voorwaarde op dat er geen twee cirkels exact op elkaar mogen liggen. Dan krijgen oneindig veel snijpunten.
+\subsubsection{Randgevallen}
+Voor dit algoritme leggen we als voorwaarde op dat er geen twee cirkels exact op elkaar mogen liggen. Dan zijn er oneindig veel snijpunten.
 
 \subsection{Algoritme 2}
 \subsubsection{Algemeen}
@@ -130,7 +124,7 @@ De complexiteit wordt wederom bepaald door het aantal keer dat we twee cirkels c
 \centering
 \includegraphics[width=0.5\textwidth]{algo2_probleem.png}
 \end{figure}
-\subsubsection{Randvoorwaarden}
+\subsubsection{Randgevallen}
 Voor deze implementatie ondersteunen we bijna elke combinatie van de volgende randgevallen:
 \begin{enumerate}
 \item Dezelfde x-co\"ordinaat
@@ -160,7 +154,7 @@ De boom wordt gesorteerd op laagste y-co\"ordinaat.
 \State Intervaltree T: met alle intervallen op een bepaald moment van een eventpoint, ongesorteerd.
 \For {elk punt p in de gesorteerde lijst}
 \If {p is het linkse eindpunt van een cirkel c}
-\State List mogelijkeSnijpunten  p.interval.checkOverlappingen(T)
+\State List mogelijkeSnijpunten = T.checkOverlappingen(p.interval)
 	\For {t in mogelijkeSnijpunten}
 	\State snijptn = t.cirkel.BerekenSnijpunten(c)
 	\State output.VoegToe(snijptn)
@@ -173,9 +167,17 @@ De boom wordt gesorteerd op laagste y-co\"ordinaat.
 \Return output
 \end{algorithmic}
 \end{algorithm}
-
+De methode \verb|checkOverlappingen(Interval t)| moet als argument een interval meekrijgen. Ze kan uitgevoerd worden op een intervaltree, ze geeft dan een lijst van alle nodes in de intervaltree terug waarmee het interval overlapt.\\
+De methode \verb|BerekenSnijpunten(Cirkel c)|is dezelfde methode van in algoritme 1 en 2.
 \subsubsection{Complexiteit}
-V
+Het complexiteit van dit algoritme is een benadering van de gevraagde $O((N+S)Log(N))$. Er gaan namelijk mogelijks een aantal onnodige controles op snijpunten worden uitgevoerd. De situatie waarin dit voorkomt, wordt in de volgende figuur gegeven. De vierkanten van de cirkels snijden elkaar wel maar de cirkels op zich niet.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{onnodigecheck.png}
+\end{figure}
+Aangezien algoritme hard gelijkt op algoritme 2, kunnen we de complexiteit gelijkaardig berekenen. Opnieuw gaan we alle punten sorteren, hiervan weten we dat dit gebeurt in $O(N\cdot Log(N))$, net zoals in de vorige 2 algoritmen. Telkens waneer we nu een links punt tegenkomen van een lijnstuk van een cirkel, gaan we het interval opdit punt niet direct toevoegen aan de intervaltree (in tegenstelling tot algoritme 2 waarbij het punt wel direct aan een lijst wordt toegevoegd). Eerst controleren we met welke nodes in de intervaltree het interval overlapt. 
+\subsubsection{Randgevallen}
+De sterkste beperking wordt opgelegd door de intervaltree. Er mogen namelijk geen twee exact dezelfde intervallen zijn die een zelfde laagste punt hebben (een interval bestaat uit een lo, laagste punt en een hi, het hoogste punt). Ook al zijn de intervallen misschien niet evenlang. 
 \section{Correctheid van de algoritmen verifi\"eren}
 
 Om de correctheid van de algoritmen te verifi\"eren hebben we verschillende stappen ondernomen. Deze stappen moeten in chronologische volgorde worden uitgevoerd omdat we assumpties uit voorgaande stappen gebruiken om te huidige stap te verifi\"eren.
