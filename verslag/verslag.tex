@@ -175,7 +175,23 @@ Het complexiteit van dit algoritme is een benadering van de gevraagde $O((N+S)Lo
 \centering
 \includegraphics[width=0.55\textwidth]{onnodigecheck.png}
 \end{figure}
-Aangezien algoritme hard gelijkt op algoritme 2, kunnen we de complexiteit gelijkaardig berekenen. Opnieuw gaan we alle punten sorteren, hiervan weten we dat dit gebeurt in $O(N\cdot Log(N))$, net zoals in de vorige 2 algoritmen. Telkens waneer we nu een links punt tegenkomen van een lijnstuk van een cirkel, gaan we het interval opdit punt niet direct toevoegen aan de intervaltree (in tegenstelling tot algoritme 2 waarbij het punt wel direct aan een lijst wordt toegevoegd). Eerst controleren we met welke nodes in de intervaltree het interval overlapt. De duur van \'e\'en van deze operaties hangt af van de implementatie van de intervaltree. Als dit een gebalanceerde Red-Blacktree zou zijn dan is dit gegarandeerd in $O(Log(N))$; in onze orignele implementatie waren. Onze implementatie werkt echter als een ongebalanceerde boom. In worst case geeft dit $O(N)$. Het aantal keer dat we deze operatie moeten uit
+Aangezien algoritme hard gelijkt op algoritme 2, kunnen we de complexiteit gelijkaardig berekenen. Opnieuw gaan we alle punten sorteren, hiervan weten we dat dit gebeurt in $O(N\cdot Log(N))$, net zoals in de vorige 2 algoritmen. 
+
+Telkens waneer we nu een links punt tegenkomen van een lijnstuk van een cirkel, gaan we het interval op dit punt niet direct toevoegen aan de intervaltree (in tegenstelling tot algoritme 2 waarbij het punt wel direct aan een lijst wordt toegevoegd). Eerst controleren we met welke nodes in de intervaltree het interval overlapt. De duur van \'e\'en van deze operaties hangt af van de implementatie van de intervaltree. Als dit een gebalanceerde Red-Blacktree zou zijn dan is dit gegarandeerd in $O(Log(N))$; in onze orignele implementatie waren we hieraan begonnen. Dit compliceerde de code echter zo hard dat we besloten hebben, om een simpelere implementatiete gebruiken. Onze implementatie werkt als een ongebalanceerde binaire zoekboom. In worst case geeft dit $O(N)$. We gaan er echter van uit dat we te maken hebben met een gemiddelde verdeling wat inhoudt dat dit een complexiteit heeft van $O(K\cdot Log(N))$ met K een constante.
+
+
+Het aantal keer dat we deze operatie moeten uitvoeren is R. Dit is het aantal keer dat er twee vierkanten snijden. Het aantal keer dat twee cirkels snijden S is $O(R)$. 
+\\
+\\
+Nu hebben we dus gezocht achter alle intervallen waarmee het gegeven interval overlapt. Hierna moeten we het interval toevoegen aan de boom. Opnieuw vergt dit in worst-case $O(N)$ tijd en gemiddeld $O(K\cdot Log(N))$ met K een constante.
+
+
+Een operatie die hier mee samenhangt is een node verwijderen uit de boom wat in het slechtste en gemiddele geval dezelfde complexiteit geeft als een node toevoegen.
+\\
+\\
+Het totaal voorlopig geeft dus:
+$$O(R\cdot K \cdot Log(N)) + O(K\cdot Log(N)) + O(K\cdot Log(N)) = O(R\cdot K \cdot Log(N))$$ 
+Al
 \subsubsection{Randgevallen}
 De sterkste beperking wordt opgelegd door de intervaltree. Er mogen namelijk geen twee exact dezelfde intervallen zijn die een zelfde laagste punt hebben (een interval bestaat uit een lo, laagste punt en een hi, het hoogste punt). Ook al zijn de intervallen misschien niet evenlang. 
 \section{Correctheid van de algoritmen verifi\"eren}
